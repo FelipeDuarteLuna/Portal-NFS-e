@@ -7,18 +7,20 @@ import { PoModule } from '@po-ui/ng-components';
 import { PoTemplatesModule } from '@po-ui/ng-templates';
 import { LoginModule } from './login/login.module';
 import { LoginComponent } from './login/login.component';
+import { HomeModule } from './pages/home/home.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     PoModule,
     PoTemplatesModule,
-    LoginModule
+    LoginModule,
+    HomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
