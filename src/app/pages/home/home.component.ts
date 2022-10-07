@@ -7,13 +7,7 @@ import { HomeService } from './home.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   providers: [HomeService],
-  styles: [
-    `
-      .sample-menu-header-text-color {
-        color: #9da7a9;
-      }
-    `
-  ]
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
   menuItemSelected: string;
@@ -28,37 +22,17 @@ export class HomeComponent {
       badge: { value: 1 }
     },
     {
-      label: 'TssNewNfse',
-      icon: 'po-icon po-icon-settings',
-      shortLabel: 'TssNewNfse',
-      subItems: [
-        { label: 'Ministry of Labour', action: this.printMenuAction.bind(this), link: 'http://trabalho.gov.br/' },
-        { label: 'SindPD Syndicate', action: this.printMenuAction.bind(this), link: 'http://www.sindpd.com.br/' }
-      ]
-    },
-    {
-      label: 'Documentação',
+      label: 'DocumentaÃ§Ã£o',
       icon: 'po-icon po-icon-document-filled',
-      shortLabel: 'Documentação',
-      subItems: [
-        {
-          label: 'Meal tickets',
-          subItems: [
-            { label: 'Acceptance network ', action: this.printMenuAction.bind(this) },
-            {
-              label: 'Extracts',
-              action: this.printMenuAction.bind(this),
-              subItems: [
-                { label: 'Monthly', action: this.printMenuAction.bind(this), badge: { value: 3, color: 'color-03' } },
-                { label: 'Custom', action: this.printMenuAction.bind(this) }
-              ]
-            }
-          ]
-        },
-        { label: 'Transportation tickets', action: this.printMenuAction.bind(this), badge: { value: 12 } }
-      ]
+      shortLabel: 'DocumentaÃ§Ã£o',
+      link:'https://tdn.totvs.com/pages/releaseview.action?pageId=203771195',
+
     }
   ];
+
+  widgetClicadoDocumetacao(){
+    window.open("https://tdn.totvs.com/pages/releaseview.action?pageId=203771195", '_blank');
+  }
 
   constructor(public HomeService: HomeService) {}
 
