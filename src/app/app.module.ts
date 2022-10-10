@@ -8,11 +8,13 @@ import { PoTemplatesModule } from '@po-ui/ng-templates';
 import { LoginModule } from './login/login.module';
 import { LoginComponent } from './login/login.component';
 import { HomeModule } from './pages/home/home.module';
+import { ConfigurarComponent } from "./pages/configurar/ConfigurarComponent";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    ConfigurarComponent,
    ],
   imports: [
     BrowserModule,
