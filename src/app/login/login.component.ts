@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PoLanguage } from '@po-ui/ng-components';
@@ -10,8 +11,12 @@ import { PoModalPasswordRecoveryType, PoPageLoginLiterals, PoPageLoginRecovery }
 })
 export class LoginComponent implements OnInit {
 
+   private userLogin: string;
+   private userPass: string;
+
   constructor(
-    private router: Router
+    private router: Router,
+    private authservice : AuthService,
   ) { }
 
   ngOnInit() {
@@ -43,7 +48,8 @@ export class LoginComponent implements OnInit {
   user: string = '' ;
 
   goToLogin(event){
-    console.log("nickDev2022");
+    this.authservice.checkLogin(event);
+    /*console.log("nickDev2022");
     console.log(event);
 
     if (event.login.toUpperCase() == "ADMIN" && event.password == "1" ) {
@@ -51,9 +57,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['home']);
     } else {
       console.log("Usário não autorizado, verifique as informações");
-    }
-
-
+    }*/
   }
 
 }

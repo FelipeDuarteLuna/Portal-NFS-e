@@ -1,29 +1,21 @@
-<div class="po-wrapper">
-  <po-menu p-collapsed p-filter [p-menus]="menus" [p-service]="HomeService"
-  p-logo="/assets/imagens/logo_totvs_branco.png">
-  </po-menu>
+<po-page-default>
+  <div>
+    <figure>
+      <img src="../../../assets/imagens//nfse_nacional.png" width= 233px height=172px >
+    </figure>
 
-  <po-toolbar p-title="TSS - NFS-e" [p-show-notification]="false"></po-toolbar>
+    <div class="po-row container-widget-cert po-mt-5">
+      <po-widget  class="widget-card po-xl-5 po-lg-5 po-md-5 po-sm-5" p-height="150" p-no-border="false" routerLink="/configurar2">
+        <div class="widget-text po-font-subtitle po-text-center">
+          <span class="po-icon po-icon-settings po-font-subtitle po-text-center"></span>Configurar</div>
+      </po-widget>
 
-  <po-page-default [p-title]="menuItemSelected">
-
-    <div>
-      <figure>
-        <img src="../../../assets/imagens//nfse_nacional.png" width= 233px height=172px >
-      </figure>
-
-      <div class="po-row container-widget-cert po-mt-5">
-        <po-widget  class="widget-card po-xl-5 po-lg-5 po-md-5 po-sm-5" p-height="150" p-no-border="false">
-          <div class="widget-text po-font-subtitle po-text-center">
-            <span class="po-icon po-icon-settings po-font-subtitle po-text-center"></span>Configurar</div>
-        </po-widget>
-
-        <po-widget (click)="widgetClicadoDocumetacao()" class="widget-card po-xl-5 po-lg-5 po-md-5 po-sm-5" p-height="150">
-          <div class="widget-text po-font-subtitle po-text-center">
-            <span class="po-icon po-icon-document-filled po-font-subtitle"></span>Documentação</div>
-        </po-widget>
-      </div>
+      <po-widget (click)="widgetClicadoDocumetacao()" class="widget-card po-xl-5 po-lg-5 po-md-5 po-sm-5" p-height="150">
+        <div class="widget-text po-font-subtitle po-text-center">
+          <span class="po-icon po-icon-document-filled po-font-subtitle"></span>Documentação</div>
+      </po-widget>
+    </div>
   </div>
+</po-page-default>
 
-  </po-page-default>
-</div>
+

@@ -2,9 +2,10 @@ import { HomeComponent } from './home.component';
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ConfigurarComponent } from '../configurar/ConfigurarComponent';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent }
+  { path: 'configurar2', component: ConfigurarComponent }
 ];
 
 
