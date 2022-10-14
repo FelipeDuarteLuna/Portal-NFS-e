@@ -1,13 +1,14 @@
+import { ConfigurarModule } from './pages/configurar/configurar.modules';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PoModule } from '@po-ui/ng-components';
-import { PoTemplatesModule } from '@po-ui/ng-templates';
+import { PoTemplatesModule, PoPageDynamicSearchModule } from '@po-ui/ng-templates';
 import { LoginModule } from './login/login.module';
 import { LoginComponent } from './login/login.component';
 import { HomeModule } from './pages/home/home.module';
+import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,9 @@ import { HomeModule } from './pages/home/home.module';
     PoTemplatesModule,
     LoginModule,
     HomeModule,
+    RouterModule.forRoot([]),
+    PoPageDynamicSearchModule,
+    ConfigurarModule,
 
   ],
   providers: [],

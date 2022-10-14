@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfigurarComponent } from "./ConfigurarComponent";
+import { NgModule } from '@angular/core';
 
 describe('ConfigurarComponent', () => {
   let component: ConfigurarComponent;

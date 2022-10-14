@@ -1,8 +1,65 @@
-<p></p>
-<div class="wrapper">
-  <div class="box1">One</div>
-  <div class="box2">Two</div>
-  <div class="box3">Three</div>
-  <div class="box4">Four</div>
-  <div class="box5">Five</div>
+<div  class="po-row">
+
+  <div class="p-label po-xl-4 po-lg-4 po-md-4 po-sm-4">
+    <br>
+    <label>Informe o código do Municí­pio (IBGE) que deseja configurar:</label>
+    <br>
+    <br>
+    <po-lookup
+    name="lookup"
+    p-field-label="label"
+    p-field-value="value"
+    p-filter-service="https://po-sample-api.herokuapp.com/v1/heroes"
+    p-label=""
+    p-border="10"
+  >
+  </po-lookup>
+  <br>
+  <label>Município:</label>
+  <label> São Paulo</label>
+  <br>
+  <label>Estado:</label>
+  <label> SP</label>
+  <br>
+  <label>Versão:</label>
+  <label> 1.00</label>
+  <br>
+  <br>
+    <br><br><br>
+    <figure>
+      <img src="../../../assets/imagens//nfse_nacional.png" alt="Logo NFS-e" width= 200px height=180px>
+    </figure>
+
+  </div>
+
+  <div class="po-xl-8 po-lg-8 po-md-8 po-sm-8">
+
+    <po-button p-icon="po-icon-home"(p-click)="onClick_Home()" p-size="mediun"></po-button>
+
+    <po-page-dynamic-search
+    [p-actions]="actions"
+    [p-hide-close-disclaimers]="hideCloseDisclaimers"
+    [p-filters]="filters"
+    [p-literals]="literals"
+    [p-load]="onLoadFields.bind(this)"
+    [p-quick-search-width]="quickSearchWidth"
+    [p-hide-remove-all-disclaimer]="hideRemoveAllDisclaimer"
+    (p-change-disclaimers)="onChangeDisclaimers($event)"
+    (p-quick-search)="onQuickSearch($event)"
+    (p-advanced-search)="onAdvancedSearch($event)"
+    >
+
+    <po-table
+      [p-selectable]="true"
+      [p-single-select]="true"
+      [p-sort]="true"
+      [p-striped]="true"
+      [p-columns]="hiringProcessesColumns"
+      [p-items]="hiringProcesses"
+    >
+    </po-table>
+
+    </po-page-dynamic-search>
+  </div>
+
 </div>
