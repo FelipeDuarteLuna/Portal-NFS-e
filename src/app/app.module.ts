@@ -7,7 +7,9 @@ import { PoTemplatesModule, PoPageDynamicSearchModule } from '@po-ui/ng-template
 import { LoginModule } from './login/login.module';
 import { LoginComponent } from './login/login.component';
 import { HomeModule } from './pages/home/home.module';
-import { RouterModule } from '@angular/router';
+import { MenuModule } from './core/auth/menu/menu.module';
+import { AuthService } from './login/auth.service';
+import { AuthGuard } from './core/auth/auth.guard';
 import { NgModule } from '@angular/core';
 
 @NgModule({
@@ -23,12 +25,12 @@ import { NgModule } from '@angular/core';
     PoTemplatesModule,
     LoginModule,
     HomeModule,
-    RouterModule.forRoot([]),
     PoPageDynamicSearchModule,
     ConfigurarModule,
+    MenuModule,
 
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
