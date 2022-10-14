@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { PoMenuFilter, PoMenuItemFiltered } from '@po-ui/ng-components';
 
 @Injectable()
-export class HomeService implements PoMenuFilter {
+export class MenuService implements PoMenuFilter {
   private url: string = 'https://po-sample-api.herokuapp.com/v1/menus';
 
   constructor(private http: HttpClient) {}
