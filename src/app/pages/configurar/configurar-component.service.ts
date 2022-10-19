@@ -1,150 +1,113 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, Component } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { PoTableColumn } from '@po-ui/ng-components';
 
 @Injectable()
-
-export class ConfigurarService {
-  constructor(private http: HttpClient) {}
-  filter(filters) {
-    let filteredItems = [...this.getItems()];
-
-    Object.keys(filters).forEach(filter => {
-      filteredItems = filteredItems.filter(register => {
-        if (typeof register[filter] === 'string') {
-          return register[filter].toLocaleLowerCase().includes(filters[filter].toLocaleLowerCase());
-        } else {
-          return register[filter] === filters[filter];
-        }
-      });
-    });
-
-    return filteredItems;
-
-  }
-
+export class SamplePoTableTransportService {
+  favorite: any;
+  edit: any;
   getColumns(): Array<PoTableColumn> {
     return [
-
-      { property: 'Modelo', label: 'Modelo', type: 'string' },
-      { property: 'Conteudo', label: 'Conteúdo', type: 'string' },
-      { property: 'hireStatus',
-        label: 'Status',
-        type: 'subtitle',
-        subtitles: [
-          { value: '1', color: 'success', label: 'Concluí­do', content: 'ConcluÃ­do' },
-          { value: '2', color: 'warning', label: 'Pendente', content: 'Pendente' },
-          { value: '3', color: 'danger', label: 'Cancelado', content: 'Cancelado' }
+      { property: 'Modelo', type: 'string', width: '10%'},
+      { property: 'Conteudo',type:'string', width:'60%' },
+      { property: 'Status', type: 'label',  width: '8%',
+        labels: [
+          { value: '1', color: 'color-11', label: 'Concluido' },
+          { value: '2', color: 'color-08', label: 'Pendente' },
+          { value: '3', color: 'color-07', label: 'Cancelado' }
         ]
-      }
+      },
+      { property: '', type: 'link', width: '1%'},
     ];
+
   }
 
-  getHireStatus() {
-    return [
-      { value: '1', label: 'Confirmado' },
-      { value: '2', label: 'Pendente' },
-      { value: '3', label: 'Cancelado' }
-    ];
-  }
-
-  getItems() {
+  getItems(): Array<any> {
     return [
       {
-        hireStatus: '1',
-        Conteudo: '',
         Modelo: 'Provedor',
-        job: 'Provedor',
+        Conteudo: '',
+        Status: '1',
+        Detalhes: 'Detalhes',
       },
       {
-        hireStatus: '2',
+        Status: '1',
         Conteudo: '',
         Modelo: 'Modelo',
-        job: 'Modelo',
+        Detalhes: 'Detalhes',
       },
       {
-        hireStatus: '3',
+        Status: '1',
         Conteudo: '',
         Modelo: 'Lote',
-        job: 'Lote',
+        Detalhes: 'Detalhes',
       },
       {
-        hireStatus: '2',
+        Status: '2',
         Conteudo: '',
         Modelo: 'RPS',
-        job: 'RPS',
+        Detalhes: 'Detalhes',
       },
       {
-        hireStatus: '1',
+        Status: '2',
         Conteudo: '',
         Modelo: 'Consulta Lote',
-        job: 'Consulta Lote',
+        Detalhes: 'Detalhes',
       },
       {
-        hireStatus: '2',
+        Status: '2',
         Conteudo: '',
         Modelo: 'Consulta RPS',
-        job: 'Consulta RPS',
+        Detalhes: 'Detalhes',
       },
       {
-        hireStatus: '1',
+        Status: '3',
         Conteudo: '',
         Modelo: 'Cancelamento',
-        job: 'Cancelamento',
+        Detalhes: 'Detalhes',
       },
       {
-        hireStatus: '2',
+        Status: '2',
         Conteudo: '',
-        Modelo: 'wsdl Produção',
-        job: 'wsdl Producao',
+        Modelo: 'wsdl Producao',
+        Detalhes: 'Detalhes',
       },
       {
-        hireStatus: '2',
+        Status: '2',
         Conteudo: '',
-        Modelo: 'wsdl Homologação',
-        job: 'wsdl Homologação',
+        Modelo: 'wsdl Homologacao',
+        Detalhes: 'Detalhes',
       },
       {
-        hireStatus: '2',
+        Status: '2',
         Conteudo: '',
         Modelo: 'Sign Lote',
-        job: 'Sign Lote',
+        Detalhes: 'Detalhes',
       },
       {
-        hireStatus: '2',
+        Status: '2',
         Conteudo: '',
         Modelo: 'Sign Rps',
-        job: 'Sign Rps',
+        Detalhes: 'Detalhes',
       },
       {
-        hireStatus: '2',
+        Status: '2',
         Conteudo: '',
         Modelo: 'Sign Canc',
-        job: 'Sign Canc',
+        Detalhes: 'Detalhes',
       },
       {
-        hireStatus: '2',
+        Status: '2',
         Conteudo: '',
         Modelo: 'Sign Cons',
-        job: 'Sign Cons',
+        Detalhes: 'Detalhes',
       },
       {
-        hireStatus: '2',
+        Status: '2',
         Conteudo: '',
         Modelo: 'De Para',
-        job: 'De Para',
+        Detalhes: 'Detalhes',
       }
     ];
-  }
-
-  resetFilterHiringProcess() {
-    return [...this.getItems()];
-  }
-
-  getPageOptions() {
-    return {
-
-    };
   }
 
 }

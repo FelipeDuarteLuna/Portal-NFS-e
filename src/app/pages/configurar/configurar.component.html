@@ -1,65 +1,58 @@
-<div  class="po-row">
+<po-page-default [p-title]="menuItemSelected">
+
+<div class="po-row">
 
   <div class="p-label po-xl-4 po-lg-4 po-md-4 po-sm-4">
     <br>
-    <label>Informe o código do Municí­pio (IBGE) que deseja configurar:</label>
-    <br>
-    <br>
+    <label>Informe o codigo do Munici­pio (IBGE) que deseja configurar:</label>
+    <br><br>
+
     <po-lookup
     name="lookup"
     p-field-label="label"
     p-field-value="value"
     p-filter-service="https://po-sample-api.herokuapp.com/v1/heroes"
     p-label=""
+    p-placeholder="3550308"
     p-border="10"
-  >
-  </po-lookup>
-  <br>
-  <label>Município:</label>
-  <label> São Paulo</label>
-  <br>
-  <label>Estado:</label>
-  <label> SP</label>
-  <br>
-  <label>Versão:</label>
-  <label> 1.00</label>
-  <br>
-  <br>
-    <br><br><br>
+    >
+    </po-lookup>
+    <br>
+    <label>Munici­pio:</label>
+    <label style="color:black;"> Sao Paulo</label>
+
+    <br>
+    <label>Estado:</label>
+    <label style="color:black;"> SP</label>
+
+    <br>
+    <label>Versao:</label>
+    <label style="color:black;"> 1.00</label>
+
+    <br><br>
+
     <figure>
-      <img src="../../../assets/imagens//nfse_nacional.png" alt="Logo NFS-e" width= 200px height=180px>
+      <img src="../../../assets/imagens//nfse_nacional.png" alt="Logo NFS-e" width= 250px height=230px>
     </figure>
 
   </div>
 
   <div class="po-xl-8 po-lg-8 po-md-8 po-sm-8">
 
-    <po-button p-icon="po-icon-home"(p-click)="onClick_Home()" p-size="mediun"></po-button>
-
-    <po-page-dynamic-search
-    [p-actions]="actions"
-    [p-hide-close-disclaimers]="hideCloseDisclaimers"
-    [p-filters]="filters"
-    [p-literals]="literals"
-    [p-load]="onLoadFields.bind(this)"
-    [p-quick-search-width]="quickSearchWidth"
-    [p-hide-remove-all-disclaimer]="hideRemoveAllDisclaimer"
-    (p-change-disclaimers)="onChangeDisclaimers($event)"
-    (p-quick-search)="onQuickSearch($event)"
-    (p-advanced-search)="onAdvancedSearch($event)"
-    >
-
-    <po-table
-      [p-selectable]="true"
-      [p-single-select]="true"
-      [p-sort]="true"
+    <div>
+      <span class="po-icon po-icon-home" (click)="onClick_Home()"></span><br>
+      <po-table
+      [p-actions]="Detalhes"
+      [p-actions-right]="true"
+      p-container="shadow"
+      [p-columns]="columns"
+      [p-items]="items"
       [p-striped]="true"
-      [p-columns]="hiringProcessesColumns"
-      [p-items]="hiringProcesses"
-    >
-    </po-table>
+      >
+      </po-table>
+    </div>
 
-    </po-page-dynamic-search>
   </div>
 
 </div>
+</po-page-default>
