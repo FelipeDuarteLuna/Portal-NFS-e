@@ -8,15 +8,7 @@ figure{
   margin-left: 50px;
   margin-right: 50px;
 }
-.container-widget-cert{
-  display: flex;
-  justify-content: center;
-}
-.widget-card {
-  cursor: pointer;
-  position: left;
 
-}
 .widget-card:hover {
   margin-top: 1%;
   border: 4px solid #0c9abe;
@@ -42,6 +34,12 @@ label{
   text-align: right;
   color: #0c9abe;
 }
-po-button{
-  position:center;
+span{
+  float: right;
+  color: #0c9abe;
 }
+
+po-grid {
+  display: grid;
+}
+
