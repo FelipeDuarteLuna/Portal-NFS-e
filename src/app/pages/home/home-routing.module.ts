@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ConfigurarComponent } from '../configurar/ConfigurarComponent';
 
 const routes: Routes = [
-  { path: 'configurar2', component: ConfigurarComponent }
+  { path: 'configurar', component: ConfigurarComponent }
 ];
 
 

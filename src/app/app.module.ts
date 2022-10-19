@@ -11,6 +11,7 @@ import { MenuModule } from './core/auth/menu/menu.module';
 import { AuthService } from './login/auth.service';
 import { AuthGuard } from './core/auth/auth.guard';
 import { NgModule } from '@angular/core';
+import { RpsConfigModule } from './pages/configurar/rps/rps.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NgModule } from '@angular/core';
     PoPageDynamicSearchModule,
     ConfigurarModule,
     MenuModule,
+    RpsConfigModule,
 
   ],
   providers: [AuthService, AuthGuard],

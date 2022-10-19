@@ -10,17 +10,23 @@ import { PoMenuItem } from '@po-ui/ng-components';
 })
 export class HomeComponent {
 
-  widgetClicadoDocumetacao(){
-    window.open("https://tdn.totvs.com/pages/releaseview.action?pageId=203771195", '_blank');
-  }
+  menuItemSelected: string;
 
   constructor() {}
 
-  /* public HomeService: HomeService
+  ngOnInit(): void {
+    this.menuItemSelected = 'Home'
+  }
+
   printMenuAction(menu: PoMenuItem) {
     this.menuItemSelected = menu.label;
     console.log(this);
     console.log('Menu ativo.');
-  }*/
+  }
+
+  widgetClicadoDocumetacao(){
+    window.open("https://tdn.totvs.com/pages/releaseview.action?pageId=203771195", '_blank');
+  }
+
 }
 
