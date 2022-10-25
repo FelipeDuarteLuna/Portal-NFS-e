@@ -1,10 +1,10 @@
 <po-page-default [p-title]="menuItemSelected">
-
+  <meta charset="UTF-8"/>
 <div class="po-row">
 
   <div class="p-label po-xl-4 po-lg-4 po-md-4 po-sm-4">
     <br>
-    <label>Informe o codigo do Munici­pio (IBGE) que deseja configurar:</label>
+    <label>Informe o código do Município (IBGE) que deseja configurar:</label>
     <br><br>
 
     <po-lookup
@@ -18,7 +18,7 @@
     >
     </po-lookup>
     <br>
-    <label>Munici­pio:</label>
+    <label>Município:</label>
     <label style="color:black;"> Sao Paulo</label>
 
     <br>
@@ -26,7 +26,7 @@
     <label style="color:black;"> SP</label>
 
     <br>
-    <label>Versao:</label>
+    <label>Versão:</label>
     <label style="color:black;"> 1.00</label>
 
     <br><br>
@@ -44,10 +44,11 @@
       <po-table
       [p-actions]="Detalhes"
       [p-actions-right]="true"
-      p-container="shadow"
+      p-container="border"
       [p-columns]="columns"
       [p-items]="items"
       [p-striped]="true"
+      [p-hide-text-overflow]="true"
       >
       </po-table>
     </div>

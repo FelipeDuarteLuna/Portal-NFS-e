@@ -1,5 +1,5 @@
 import { SamplePoTableTransportService } from './configurar-component.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router'
 import { PoMenuItem, PoSelectOption, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
 
@@ -14,9 +14,11 @@ export class ConfigurarComponent implements OnInit{
   menuItemSelected: string;
   columns: Array<PoTableColumn>;
   items: Array<any>;
+
   Detalhes: Array<PoTableAction> = [
-    {label:"Detalhes"}/*,
-    {label:"Visualizar"}*/
+    {label:"Detalhes", action: this.onClick_Detalhes.bind(this) }
+
+    /*{label:"Visualizar"}*/
   ];
 
   readonly statusOptions: Array<PoSelectOption> = [
@@ -41,6 +43,10 @@ export class ConfigurarComponent implements OnInit{
 //Tratamento botao home
   onClick_Home() {
     this.router.navigate(['/home']);
+  }
+//Chamado Detalhes Configurar
+  onClick_Detalhes(Event){
+    this.router.navigate([Event.Detalhes]);
   }
 
 }
