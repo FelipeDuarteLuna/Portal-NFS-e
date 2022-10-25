@@ -24,10 +24,16 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/min",
+                "output": "/assets/monaco/"
+              },
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@po-ui/style/css/po-theme-default.min.css",
               "node_modules/@totvs/po-theme/css/po-theme-default-variables.min.css",
               "node_modules/@totvs/po-theme/css/po-theme-default.min.css",
               "node_modules/@po-ui/style/css/po-theme-core.min.css"
@@ -94,10 +100,16 @@
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/min",
+                "output": "/assets/monaco/"
+              },
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@po-ui/style/css/po-theme-default.min.css",
               "node_modules/@totvs/po-theme/css/po-theme-default-variables.min.css",
               "node_modules/@totvs/po-theme/css/po-theme-default.min.css",
               "node_modules/@po-ui/style/css/po-theme-core.min.css"
