@@ -2,9 +2,11 @@ import { RpsComponent } from './rps.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { PoModule } from '@po-ui/ng-components';
+import { PoFieldModule, PoModule } from '@po-ui/ng-components';
 import { RouterModule } from '@angular/router';
 import { PoTemplatesModule } from '@po-ui/ng-templates';
+import { FormsModule } from '@angular/forms';
+import { PoCodeEditorModule } from '@po-ui/ng-code-editor';
 
 
 
@@ -15,6 +17,9 @@ import { PoTemplatesModule } from '@po-ui/ng-templates';
     PoModule,
     RouterModule,
     PoTemplatesModule,
+    PoFieldModule,
+    FormsModule,
+    PoCodeEditorModule
 
   ],
   exports: [ RpsComponent ],

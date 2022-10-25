@@ -5,11 +5,25 @@
   <div class="po-row">
     <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
       <div class="container-text">Layout TSS<img class="icon-header" src="../../../../favicon.ico" width= 30px></div>
-      <div class="xmlgrid"></div>
+
+      <!--<po-textarea name="textarea"
+      [(ngModel)]="xmlUnico"
+      p-rows=20>
+      </po-textarea>-->
+
+      <po-code-editor
+        [(ngModel)]="xmlUnico"
+        p-height="484"
+        [p-language]="language"
+        [p-readonly]="editar"
+        [p-theme]="theme">
+      </po-code-editor>
+
+
 
       <div class="container">
         <div class="divfooter">
-          <h4 class="footer-text">Munici­pio:  <b class="dados">Belo Horizonte - MG </b></h4>
+          <h4 class="footer-text">Municí­pio:  <b class="dados">Belo Horizonte - MG </b></h4>
           <h4 class="footer-text">Versão:     <b class="dados">1.00</b></h4>
           <h4 class="footer-text">Provedor:   <b class="dados">Próprio_2****</b></h4>
         </div>
@@ -21,24 +35,32 @@
           <span class="icon po-icon po-icon-xml"></span>
           <span class="icon po-icon po-icon-pdf"></span>
         </div>
-
       </div>
     </div>
 
     <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
       <div class="container-text">Layout Prefeitura<span class="icon-header po-icon po-icon-company"></span></div>
-      <div class="xmlgrid"></div>
+
+        <po-code-editor
+          [(ngModel)]="xmlUnico3.xmlTss"
+          p-height="484"
+          [p-language]="language"
+          [p-readonly]="editar"
+          [p-theme]="theme"
+        >
+        </po-code-editor>
+
 
       <div class="container">
         <div class="divfooter">
-          <h4 class="footer-text">Municipio: Belo Horizonte</h4>
-          <h4 class="footer-text">Versão: 1.00</h4>
-          <h4 class="footer-text">Provedor: Próprio_2****</h4>
+          <h4 class="footer-text">Municipio: <b class="dados">{{ xmlUnico3.municipio }}</b></h4>
+          <h4 class="footer-text">Versão:    <b class="dados">{{ xmlUnico3.versao }}</b></h4>
+          <h4 class="footer-text">Provedor:  <b class="dados">{{ xmlUnico3.provedor }}</b></h4>
         </div>
 
         <div class="footer-icon">
-          <span class="icon po-icon po-icon-edit"></span>
-          <span class="icon po-icon po-icon-ok"></span>
+          <span class="icon po-icon po-icon-edit" (click)="ToEdit()"></span>
+          <span class="icon po-icon po-icon-ok" (click)="ToSave($event)"></span>
           <span class="icon po-icon po-icon-delete"></span>
           <span class="icon po-icon po-icon-xml"></span>
           <span class="icon po-icon po-icon-pdf"></span>

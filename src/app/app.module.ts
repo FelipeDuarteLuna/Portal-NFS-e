@@ -12,6 +12,8 @@ import { AuthService } from './login/auth.service';
 import { AuthGuard } from './core/auth/auth.guard';
 import { NgModule } from '@angular/core';
 import { RpsConfigModule } from './pages/configurar/rps/rps.module';
+import { PoCodeEditorModule } from '@po-ui/ng-code-editor';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { RpsConfigModule } from './pages/configurar/rps/rps.module';
     ConfigurarModule,
     MenuModule,
     RpsConfigModule,
+    PoCodeEditorModule,
+    HttpClientModule
 
   ],
   providers: [AuthService, AuthGuard],
