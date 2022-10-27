@@ -8,7 +8,7 @@ import { ConfigurarComponent } from './pages/configurar/ConfigurarComponent';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate:[AuthGuard]},
-  { path: 'configurar', component: ConfigurarComponent }
+  { path: 'configurar', component: ConfigurarComponent, canActivate:[AuthGuard] }
 ];
 
 
