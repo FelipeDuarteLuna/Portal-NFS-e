@@ -1,6 +1,3 @@
-
-<po-toolbar p-title="TSS - NFS-e" [p-show-notification]="false"></po-toolbar>
-
 <po-page-default [p-title]="menuItemSelected">
   <div class="po-row">
     <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
@@ -23,9 +20,9 @@
 
       <div class="container">
         <div class="divfooter">
-          <h4 class="footer-text">Munic√≠¬≠pio:  <b class="dados">Belo Horizonte - MG </b></h4>
-          <h4 class="footer-text">Vers√£o:     <b class="dados">1.00</b></h4>
-          <h4 class="footer-text">Provedor:   <b class="dados">Pr√≥prio_2****</b></h4>
+          <h4 class="footer-text">Municipio:  <b class="dados">Belo Horizonte - MG </b></h4>
+          <h4 class="footer-text">Vers„o:     <b class="dados">1.00</b></h4>
+          <h4 class="footer-text">Provedor:   <b class="dados">PrÛprio_2****</b></h4>
         </div>
 
         <div class="footer-icon">
@@ -42,7 +39,7 @@
       <div class="container-text">Layout Prefeitura<span class="icon-header po-icon po-icon-company"></span></div>
 
         <po-code-editor
-          [(ngModel)]="xmlUnico3.xmlTss"
+          [(ngModel)]="xmlUnico3.xmlPrefeitura"
           p-height="484"
           [p-language]="language"
           [p-readonly]="editar"
@@ -54,7 +51,7 @@
       <div class="container">
         <div class="divfooter">
           <h4 class="footer-text">Municipio: <b class="dados">{{ xmlUnico3.municipio }}</b></h4>
-          <h4 class="footer-text">Vers√£o:    <b class="dados">{{ xmlUnico3.versao }}</b></h4>
+          <h4 class="footer-text">Vers„o:    <b class="dados">{{ xmlUnico3.versao }}</b></h4>
           <h4 class="footer-text">Provedor:  <b class="dados">{{ xmlUnico3.provedor }}</b></h4>
         </div>
 

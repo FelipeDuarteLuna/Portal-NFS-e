@@ -1,7 +1,10 @@
+import { API } from './API';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { PoMenuItem } from '@po-ui/ng-components';
 import { IRps } from './rps';
 import { RpsService } from './rps.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -15,7 +18,9 @@ export class RpsComponent implements OnInit {
   menuItemSelected: string;
   xmlUnico: any = '';
   xmlUnico3: IRps = {};
-  versao: string;
+  xmlApiPost: API = {};
+
+  xmlUnico3$ :Observable<IRps>; // VariavÃƒÆ’Ã‚Â©l observable
 
 
   parser = new DOMParser();
@@ -26,9 +31,13 @@ export class RpsComponent implements OnInit {
   theme: string;
   editar: boolean;
 
-  constructor(private RpsService: RpsService) {
+  constructor(
+      private RpsService: RpsService,
+      private location: Location
+    ) {
 
-    this.xmlUnico =  this.RpsService.getXmlUnico();
+
+    //this.xmlUnico =  this.RpsService.getXmlUnico();
 
 
     //this.xmlUnico = this.parser.parseFromString( this.RpsService.getXmlUnico(), "text/xml");
@@ -44,12 +53,7 @@ export class RpsComponent implements OnInit {
 
     this.restore();
 
-    /*this.RpsService.list().subscribe((jsonTSSNewNFse: any) => {
-      this.xmlUnico = atob(jsonTSSNewNFse.municipios[0].xml_rps);
-      //console.log('jsonTSSNewNFse', jsonTSSNewNFse.municipios[0].xml_rps);
-      //console.log('jsonTSSNewNFse', jsonTSSNewNFse);
-    });*/
-
+    //this.RpsService.list().subscribe(dadosjson => this.xmlUnico3 = dadosjson);
 
     this.RpsService.list().subscribe((jsonTSSNewNFse: IRps) => {
 
@@ -60,14 +64,16 @@ export class RpsComponent implements OnInit {
       this.xmlUnico3.versao= jsonTSSNewNFse.versao;
       this.xmlUnico3.modelo= jsonTSSNewNFse.modelo;
       this.xmlUnico3.xmlTss= atob(jsonTSSNewNFse.xmlTss);
-      //this.xmlUnico3.municipio[0].xml_rps = atob(jsonTSSNewNFse.municipio[0].xml_rps);
-      //console.log('jsonTSSNewNFse', jsonTSSNewNFse.municipio[0].cod_mun);
-      //console.log('jsonTSSNewNFse', jsonTSSNewNFse.municipio[0].versao);
-      //console.log('jsonTSSNewNFse', jsonTSSNewNFse.municipio[0].provedor);
-      //console.log('jsonTSSNewNFse', jsonTSSNewNFse.municipio[0].xml_rps);
-      //console.log('jsonTSSNewNFse', jsonTSSNewNFse.municipio[0].xml_canc);
-      //console.log('jsonTSSNewNFse', jsonTSSNewNFse.municipios[0].xml_rps);
+      this.xmlUnico3.xmlPrefeitura = atob(jsonTSSNewNFse.xmlPrefeitura);
+      this.xmlUnico = this.xmlUnico3.xmlTss;
+    }, error =>{
+      this.RpsService.handleError(error)
     });
+
+
+    //this.xmlUnico3$ = this.RpsService.list();
+    //console.log(this.xmlUnico3$);
+
   }
 
   printMenuAction(menu: PoMenuItem) {
@@ -85,15 +91,34 @@ export class RpsComponent implements OnInit {
   }
 
   ToEdit(){
-    console.log('BotÃ£o para editar . XML.');
-    alert('BotÃ£o para editar . XML.');
+    console.log('Botão para editar . XML.');
+    //alert('Botão para editar . XML.');
+    this.RpsService.showAlertSucess("Botão habilitado para EDIÇÃO do  .XML."),
     this.editar = false;
   }
 
   ToSave(event){
-    alert('BotÃ£o para SALVAR .XML.');
+    //alert('Botão para SALVAR .XML.');
     console.log(event);
-    console.log(this.xmlUnico);
+    console.log(this.xmlUnico3.xmlTss);
+    this.xmlApiPost.municipio = this.xmlUnico3.municipio;
+    this.xmlApiPost.cod_mun = this.xmlUnico3.cod_mun;
+    this.xmlApiPost.versao = this.xmlUnico3.versao;
+    this.xmlApiPost.ativo = "S";
+    this.xmlApiPost.provedor = this.xmlUnico3.provedor;
+    this.xmlApiPost.modelo = this.xmlUnico3.modelo;
+    this.xmlApiPost.xml_rps = btoa( this.xmlUnico3.xmlPrefeitura );
+    this.xmlApiPost.xmlTss = btoa( this.xmlUnico3.xmlTss );
+
+    this.RpsService.post(this.xmlApiPost).subscribe(
+      success =>{
+        this.RpsService.showAlertSucess("RequisiÇão Post, realizada com sucesso.")
+        //this.location.back()
+      },
+      error =>{
+        this.RpsService.handleError(error)
+      }, () => console.log('Request completado com sucesso.')
+    );
 
   }
 
