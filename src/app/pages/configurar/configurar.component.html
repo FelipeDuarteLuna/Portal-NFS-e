@@ -12,7 +12,7 @@
     [(ngModel)]="Municipio"
     (ngModelChange)="Municipio = $event"
     p-auto-focus="true"
-    (p-blur)="onClick_Pesquisa($event)"
+    (p-change)="onClick_Pesquisa($event)"
     p-clean="true"
     p-label=""
     p-mask="9999999"

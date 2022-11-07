@@ -8,7 +8,7 @@ import { MunGet } from './configurar';
 })
 export class ConfigurarApi {
   //Variável de ambiente
-  private readonly API = 'http://localhost:1322/rest/api/v1/SchemaConv/getmunicipio?filter=';
+  private readonly API = 'http://localhost:1322/rest/api/v1/ApiNewNfse/getmunicipio?filter=';
   httpClient: any;
   endPontGET: String;
 

@@ -66,8 +66,8 @@ onClick_Detalhes(Event){
   // this.router.navigate([Event.Detalhes], { state: { tituloPagina: Event.Modelo} });
   console.log(Event.Detalhes);
   this.router.navigate([Event.Detalhes],
-     { state: { metodo: Event.Modelo, conteudoXml: Event.Conteudo, codMunicipio: "2102101", Municipio: "Brejo - MA",
-                Versao: "1.00", Provedor: "Renan s2 Lucia <3" } });
+    { state: { metodo: Event.Modelo, conteudoXml: Event.Conteudo, codMunicipio: this.Municipio, Municipio: this.xmlUnico3.DESC_MUN,
+      Versao: this.xmlUnico3.VERSAO, Provedor: this.xmlUnico3.PROVEDOR } });
 }
   //Consulta Pesquisa codmun
   onClick_Pesquisa(event) {
@@ -88,13 +88,14 @@ onClick_Detalhes(Event){
     this.items[2].Conteudo = atob(jsonTSSNewNFse["XML_LOTE"]);
     this.items[3].Conteudo = atob(jsonTSSNewNFse["XML_RPS"]);
     this.items[4].Conteudo = atob(jsonTSSNewNFse["XMLCONSLOT"]);
-    this.items[5].Conteudo = atob(jsonTSSNewNFse["SIGN_CANC"]);
-    this.items[6].Conteudo = atob(jsonTSSNewNFse["WSDL_PROD"]);
-    this.items[7].Conteudo = atob(jsonTSSNewNFse["WSDL_HOMO"]);
-    this.items[8].Conteudo = atob(jsonTSSNewNFse["SIGN_LOTE"]);
-    this.items[9].Conteudo = atob(jsonTSSNewNFse["SIGN_RPS"]);
-    this.items[10].Conteudo = atob(jsonTSSNewNFse["SIGN_CANC"]);
-    this.items[11].Conteudo = atob(jsonTSSNewNFse["SIGN_CONSR"]);
+    this.items[5].Conteudo = atob(jsonTSSNewNFse["XMLCONSRPS"]);
+    this.items[6].Conteudo = atob(jsonTSSNewNFse["SIGN_CANC"]);
+    this.items[7].Conteudo = atob(jsonTSSNewNFse["WSDL_PROD"]);
+    this.items[8].Conteudo = atob(jsonTSSNewNFse["WSDL_HOMO"]);
+    this.items[9].Conteudo = atob(jsonTSSNewNFse["SIGN_LOTE"]);
+    this.items[10].Conteudo = atob(jsonTSSNewNFse["SIGN_RPS"]);
+    this.items[11].Conteudo = atob(jsonTSSNewNFse["SIGN_CANC"]);
+    this.items[12].Conteudo = atob(jsonTSSNewNFse["SIGN_CONSR"]);
 
   });
   }
