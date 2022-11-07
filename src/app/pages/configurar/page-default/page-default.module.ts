@@ -1,4 +1,4 @@
-import { RpsComponent } from './rps.component';
+import { PageDefaultComponent } from './page-default.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,8 +10,9 @@ import { PoCodeEditorModule } from '@po-ui/ng-code-editor';
 
 
 
+
 @NgModule({
-  declarations: [ RpsComponent ],
+  declarations: [ PageDefaultComponent ],
   imports: [
     // BrowserModule,
     PoModule,
@@ -22,8 +23,8 @@ import { PoCodeEditorModule } from '@po-ui/ng-code-editor';
     PoCodeEditorModule
 
   ],
-  exports: [ RpsComponent ],
+  exports: [ PageDefaultComponent ],
   providers: [],
   bootstrap: []
 })
-export class RpsConfigModule { }
+export class PageDefaultModule { }

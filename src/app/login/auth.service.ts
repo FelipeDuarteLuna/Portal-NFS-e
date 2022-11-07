@@ -25,7 +25,7 @@ export class AuthService {
 
       sessionStorage.setItem('User', event.login.toUpperCase());
       sessionStorage.setItem('Password', event.password);
-      this.router.navigate(['home']);
+      this.router.navigate(['/home']);
     } else {
       this.mostraMenuEmitter.emit(false);
       this.PoNotificationService.error("Usuário incorreto, verifique as informações!")

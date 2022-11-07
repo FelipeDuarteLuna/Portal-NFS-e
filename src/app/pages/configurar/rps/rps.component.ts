@@ -5,6 +5,7 @@ import { PoMenuItem } from '@po-ui/ng-components';
 import { IRps } from './rps';
 import { RpsService } from './rps.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class RpsComponent implements OnInit {
   xmlUnico3: IRps = {};
   xmlApiPost: API = {};
 
-  xmlUnico3$ :Observable<IRps>; // VariavÃƒÂ©l observable
+  xmlUnico3$ :Observable<IRps>; // VariavÃ©l Observable
 
 
   parser = new DOMParser();
@@ -33,10 +34,13 @@ export class RpsComponent implements OnInit {
 
   constructor(
       private RpsService: RpsService,
-      private location: Location
+      private location: Location,
+      private router: Router
     ) {
 
-
+    const nav = this.router.getCurrentNavigation().extras.state;
+    console.log('entrei no rps')
+    console.log('ngOnInit, nav:', nav)
     //this.xmlUnico =  this.RpsService.getXmlUnico();
 
 
@@ -91,14 +95,14 @@ export class RpsComponent implements OnInit {
   }
 
   ToEdit(){
-    console.log('Bot�o para editar . XML.');
-    //alert('Bot�o para editar . XML.');
-    this.RpsService.showAlertSucess("Bot�o habilitado para EDI��O do  .XML."),
+    console.log('BotÃ£o para editar . XML.');
+    //alert('BotÃ£o para editar . XML.');
+    this.RpsService.showAlertSucess("BotÃ£o habilitado para EDIÃ‡ÃƒO do  .XML."),
     this.editar = false;
   }
 
   ToSave(event){
-    //alert('Bot�o para SALVAR .XML.');
+    //alert('BotÃ£o para SALVAR .XML.');
     console.log(event);
     console.log(this.xmlUnico3.xmlTss);
     this.xmlApiPost.municipio = this.xmlUnico3.municipio;
@@ -112,7 +116,7 @@ export class RpsComponent implements OnInit {
 
     this.RpsService.post(this.xmlApiPost).subscribe(
       success =>{
-        this.RpsService.showAlertSucess("Requisi��o Post, realizada com sucesso.")
+        this.RpsService.showAlertSucess("RequisiÃ§Ã£o Post, realizada com sucesso.")
         //this.location.back()
       },
       error =>{
