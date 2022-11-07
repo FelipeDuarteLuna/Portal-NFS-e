@@ -1,7 +1,9 @@
+import { ConfigurarApi } from './configurar.service';
 import { SamplePoTableTransportService } from './configurar-component.service';
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
-import { PoMenuItem, PoSelectOption, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
+import { PoComboOptionGroup, PoMenuItem, PoSelectOption, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
+import { MunGet } from './configurar';
 
 @Component({
   selector: 'app-configurar',
@@ -11,15 +13,18 @@ import { PoMenuItem, PoSelectOption, PoTableAction, PoTableColumn } from '@po-ui
 })
 
 export class ConfigurarComponent implements OnInit{
+
+  comboPesquisa: Array<PoComboOptionGroup>;
+  selectedOptionsGroup: string;
+  event: string;
+
+  filterParams = {};
   menuItemSelected: string;
   columns: Array<PoTableColumn>;
   items: Array<any>;
-  codMunicipio: String;
 
   Detalhes: Array<PoTableAction> = [
     {label:"Detalhes", action: this.onClick_Detalhes.bind(this) }
-
-    /*{label:"Visualizar"}*/
   ];
 
   readonly statusOptions: Array<PoSelectOption> = [
@@ -27,15 +32,24 @@ export class ConfigurarComponent implements OnInit{
     { label: '2', value: 'pendente' },
     { label: '3', value: 'cancelado' }
   ];
+  xmlUnico: string;
+  Municipio: string;
+  xmlUnico3: MunGet = {};
 
-    constructor(private transportService: SamplePoTableTransportService, private router: Router) {}
+    constructor(
+      private transportService: SamplePoTableTransportService,
+      private router: Router,
+      private ConfigurarApi: ConfigurarApi
+      ) {}
+
 
     ngOnInit() {
       this.columns = this.transportService.getColumns();
       this.items = this.transportService.getItems();
       this.menuItemSelected = 'Configurar > Modelo';
-      this.codMunicipio = "2102101";
-    }
+      this.ConfigurarApi.httpClient = this.Municipio
+      }
+
     printMenuAction(menu: PoMenuItem) {
       this.menuItemSelected = menu.label;
       console.log(this);
@@ -47,13 +61,46 @@ export class ConfigurarComponent implements OnInit{
     this.router.navigate(['/home']);
   }
 //Chamado Detalhes Configurar
-  onClick_Detalhes(Event){
-    console.log(' onClick_Detalhes, event: ', Event)
-    // this.router.navigate([Event.Detalhes], { state: { tituloPagina: Event.Modelo} });
-    console.log(Event.Detalhes);
-    this.router.navigate([Event.Detalhes],
-       { state: { metodo: Event.Modelo, conteudoXml: Event.Conteudo, codMunicipio: this.codMunicipio, Municipio: "Brejo - MA",
-                  Versao: "1.00", Provedor: "Renan s2 Lucia <3" } });
-  }
-
+onClick_Detalhes(Event){
+  console.log(' onClick_Detalhes, event: ', Event)
+  // this.router.navigate([Event.Detalhes], { state: { tituloPagina: Event.Modelo} });
+  console.log(Event.Detalhes);
+  this.router.navigate([Event.Detalhes],
+     { state: { metodo: Event.Modelo, conteudoXml: Event.Conteudo, codMunicipio: "2102101", Municipio: "Brejo - MA",
+                Versao: "1.00", Provedor: "Renan s2 Lucia <3" } });
 }
+  //Consulta Pesquisa codmun
+  onClick_Pesquisa(event) {
+    //aqui para utilizar o po-combo
+    //this.Municipio = event.target.value;
+    //this.ConfigurarApi.GetPesquisa(this.Municipio).subscribe((jsonTSSNewNFse: MunGet) => {
+
+//aqui para usar o input
+    this.ConfigurarApi.GetPesquisa(this.Municipio).subscribe((jsonTSSNewNFse: MunGet) => {
+
+      //aqui monto os dados que serão carregados no xml
+    this.xmlUnico3.DESC_MUN = jsonTSSNewNFse["DESC_MUN"];
+    this.xmlUnico3.VERSAO = jsonTSSNewNFse["VERSAO"];
+    this.xmlUnico3.UF = jsonTSSNewNFse["UF"];
+    //AQUI CARREGA A <POTABLE>
+    this.items[0].Conteudo = jsonTSSNewNFse["PROVEDOR"];
+    this.items[1].Conteudo = jsonTSSNewNFse["MODELO"];
+    this.items[2].Conteudo = atob(jsonTSSNewNFse["XML_LOTE"]);
+    this.items[3].Conteudo = atob(jsonTSSNewNFse["XML_RPS"]);
+    this.items[4].Conteudo = atob(jsonTSSNewNFse["XMLCONSLOT"]);
+    this.items[5].Conteudo = atob(jsonTSSNewNFse["SIGN_CANC"]);
+    this.items[6].Conteudo = atob(jsonTSSNewNFse["WSDL_PROD"]);
+    this.items[7].Conteudo = atob(jsonTSSNewNFse["WSDL_HOMO"]);
+    this.items[8].Conteudo = atob(jsonTSSNewNFse["SIGN_LOTE"]);
+    this.items[9].Conteudo = atob(jsonTSSNewNFse["SIGN_RPS"]);
+    this.items[10].Conteudo = atob(jsonTSSNewNFse["SIGN_CANC"]);
+    this.items[11].Conteudo = atob(jsonTSSNewNFse["SIGN_CONSR"]);
+
+  });
+  }
+  onClick_Export(){
+    alert('Exportar XML ou PFD ou Doc!!')
+  }
+}
+
+
