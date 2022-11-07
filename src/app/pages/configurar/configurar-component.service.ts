@@ -37,7 +37,7 @@ export class SamplePoTableTransportService {
       },
       {
         Status: '1',
-        Conteudo: '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><mConsultaLoteRPS xmlns="http://tempuri.org/"><remessa>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;&lt;ConsultarLoteRpsEnvio xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;http://www.abrasf.org.br/nfse.xsd&quot;&gt;&lt;Prestador&gt;&lt;CpfCnpj&gt;&lt;Cnpj&gt;89042642000167&lt;/Cnpj&gt;&lt;/CpfCnpj&gt;&lt;RazaoSocial&gt;M D MOVEIS LTDA&lt;/RazaoSocial&gt;&lt;InscricaoMunicipal&gt;1859&lt;/InscricaoMunicipal&gt;&lt;/Prestador&gt;&lt;Protocolo&gt;89042642000167000000033&lt;/Protocolo&gt;&lt;/ConsultarLoteRpsEnvio&gt;</remessa><cabecalho>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;cabecalho xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; versao=&quot;20.01&quot; xmlns=&quot;http://www.abrasf.org.br/nfse.xsd&quot;&gt;&lt;versaoDados&gt;20.01&lt;/versaoDados&gt;&lt;/cabecalho&gt;</cabecalho></mConsultaLoteRPS></soap:Body></soap:Envelope>',
+        Conteudo: '',
         Modelo: 'Lote',
         Detalhes: '/lote',
       },

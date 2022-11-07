@@ -25,11 +25,7 @@ figure{
   top:45%;
   left: 35%;
 }
- po-lookup{
-  padding-right: 20px;
-  text-align: left;
-  color: #71b4c5;
- }
+
 label{
   text-align: right;
   color: #0c9abe;
@@ -41,5 +37,12 @@ span{
 
 po-grid {
   display: grid;
+}
+
+.dados{
+  color: black;
+}
+.footer-text{
+  color: #0c9abe;
 }
 
