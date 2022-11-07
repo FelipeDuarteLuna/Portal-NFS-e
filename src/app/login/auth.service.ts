@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { PoNotificationService } from '@po-ui/ng-components';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,10 @@ export class AuthService {
 
   mostraMenuEmitter = new EventEmitter<boolean>();
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private PoNotificationService: PoNotificationService,
+  ) { }
 
   checkLogin(event){
     console.log("nickDev2022");
@@ -23,9 +27,8 @@ export class AuthService {
       sessionStorage.setItem('Password', event.password);
       this.router.navigate(['home']);
     } else {
-      console.log("Usário não autorizado, verifique as informações");
       this.mostraMenuEmitter.emit(false);
+      this.PoNotificationService.error("UsuÃ¡rio incorreto, verifique as informaÃ§Ãµes!")
     }
   }
-
 }
