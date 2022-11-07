@@ -11,7 +11,7 @@ import { HomeRoutingModule } from './home-routing.module';
   declarations: [ HomeComponent
    ],
   imports: [
-    BrowserModule,
+    // BrowserModule,
     PoModule,
     RouterModule,
     PoTemplatesModule,

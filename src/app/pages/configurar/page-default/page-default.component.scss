@@ -1,0 +1,49 @@
+.container-text {
+  font-family: var(--font-family-bold),sans-serif;
+  color: #0c9abe;
+  text-align: left;
+  padding-bottom: 2%;
+}
+
+.icon-header{
+  padding-left: 2%;
+}
+
+.icon{
+  padding-left: 5%;
+  padding-right: 6%;
+}
+
+.icon:hover {
+  border: 4px solid #0c9abe;
+  padding: 0px;
+  box-shadow: var(--shadow-container-box-shadow);
+
+}
+
+.xmlgrid{
+  width: auto;
+  height: 210%;
+  background-color: #F8F8F8;
+  box-shadow: var(--shadow-container-box-shadow);
+}
+
+.container{
+  display: flex;
+  padding-top: 5%;
+  justify-content: space-between;
+}
+
+
+.footer-text{
+  color: #0c9abe;
+}
+
+.footer-icon{
+  color: #0c9abe;
+  width: 30%;
+}
+
+.dados{
+  color: black;
+}

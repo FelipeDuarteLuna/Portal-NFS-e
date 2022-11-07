@@ -12,7 +12,7 @@ import { MenuComponent } from './menu.component';
   declarations: [ MenuComponent
    ],
   imports: [
-    BrowserModule,
+    // BrowserModule,
     PoModule,
     RouterModule,
     PoTemplatesModule,

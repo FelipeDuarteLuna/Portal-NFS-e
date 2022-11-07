@@ -1,4 +1,4 @@
-import { ConfigurarModule } from './pages/configurar/configurar.modules';
+import { ConfigurarModule } from './pages/configurar/configurar.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,26 +14,27 @@ import { NgModule } from '@angular/core';
 import { RpsConfigModule } from './pages/configurar/rps/rps.module';
 import { PoCodeEditorModule } from '@po-ui/ng-code-editor';
 import { HttpClientModule } from '@angular/common/http';
+import { PageDefaultModule } from './pages/configurar/page-default/page-default.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-
-   ],
+    LoginComponent
+  ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     PoModule,
     PoTemplatesModule,
     LoginModule,
-    HomeModule,
     PoPageDynamicSearchModule,
-    ConfigurarModule,
     MenuModule,
     RpsConfigModule,
     PoCodeEditorModule,
-    HttpClientModule
+    HttpClientModule,
+    PageDefaultModule
 
   ],
   providers: [AuthService, AuthGuard],

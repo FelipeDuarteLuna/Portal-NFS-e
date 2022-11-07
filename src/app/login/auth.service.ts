@@ -21,7 +21,7 @@ export class AuthService {
 
       sessionStorage.setItem('User', event.login.toUpperCase());
       sessionStorage.setItem('Password', event.password);
-      this.router.navigate(['home']);
+      this.router.navigate(['/home']);
     } else {
       console.log("Usário não autorizado, verifique as informações");
       this.mostraMenuEmitter.emit(false);
