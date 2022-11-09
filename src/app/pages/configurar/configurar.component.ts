@@ -89,7 +89,7 @@ onClick_Detalhes(Event){
     this.items[3].Conteudo = atob(jsonTSSNewNFse["XML_RPS"]);
     this.items[4].Conteudo = atob(jsonTSSNewNFse["XMLCONSLOT"]);
     this.items[5].Conteudo = atob(jsonTSSNewNFse["XMLCONSRPS"]);
-    this.items[6].Conteudo = atob(jsonTSSNewNFse["SIGN_CANC"]);
+    this.items[6].Conteudo = atob(jsonTSSNewNFse["XML_CANC"]);
     this.items[7].Conteudo = atob(jsonTSSNewNFse["WSDL_PROD"]);
     this.items[8].Conteudo = atob(jsonTSSNewNFse["WSDL_HOMO"]);
     this.items[9].Conteudo = atob(jsonTSSNewNFse["SIGN_LOTE"]);

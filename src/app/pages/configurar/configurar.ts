@@ -1,24 +1,21 @@
 export interface MunGet{
 
-  MUNICIPIO?: any;
-  DESC_MUN?: string;
-  VERSAO?: string;
-  cod_mun?: string;
-  PROVEDOR?: string;
-  MODELO?: string;
-  xmlTss?: string;
-  SIGN_CANC?: string;
-  SIGN_CONSR?: string;
-  SIGN_LOTE?: string;
-  SIGN_RPS?: string;
-  WSDL_HOMO?: string;
+  DESC_MUN?:  string;
+  VERSAO?:    string;
+  UF?:        string;
+  PROVEDOR?:  string;
+  MODELO?:    string;
+  XML_LOTE?:  string;
+  XML_RPS?:   string;
+  XMLCONSLOT?:string;
+  XMLCONSRPS?:string;
+  XML_CANC?:  string;
   WSDL_PROD?: string;
-  XMLCONSLOT?: string;
-  XMLCONSRPS?: string;
-  XML_CANC?: string;
-  XML_DEPARA?: string;
-  XML_LOTE?: string;
-  XML_RPS?: string;
-  UF?: string;
+  WSDL_HOMO?: string;
+  SIGN_LOTE?: string;
+  SIGN_RPS?:  string;
+  SIGN_CANC?: string;
+  SIGN_CONSR?:string;
+  MUNICIPIO?: any;
 
 }
