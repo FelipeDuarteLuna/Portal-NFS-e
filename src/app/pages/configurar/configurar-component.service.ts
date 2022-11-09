@@ -27,7 +27,7 @@ export class SamplePoTableTransportService {
         Modelo: 'Provedor',
         Conteudo: '',
         Status: '2',
-        Detalhes: '/Provedor',
+        Detalhes: 'configurar/Provedor',
       },
       {
         Status: '1',

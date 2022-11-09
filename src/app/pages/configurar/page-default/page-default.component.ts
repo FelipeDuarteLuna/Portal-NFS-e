@@ -5,8 +5,8 @@ import { PageDefaultService } from './page-default.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IRps } from '../rps/rps';
-import { API } from '../rps/API';
 import { PageDefault } from './PageDefault';
+import { ConversionUtils } from 'turbocommons-ts';
 
 
 @Component({
@@ -46,7 +46,7 @@ export class PageDefaultComponent implements OnInit {
       private PageService: PageDefaultService,
       private location: Location,
       private router: Router,
-      private route: ActivatedRoute // Classe para obter parâmetros, da rota ativa.
+      private route: ActivatedRoute // Classe para obter parÃ¢metros, da rota ativa.
     ) {
 
     this.nav = this.router.getCurrentNavigation().extras.state;
@@ -61,6 +61,7 @@ export class PageDefaultComponent implements OnInit {
 
       console.log('entrei no rps');
       console.log('entrei no PAGE DEFAULT ngOnInit, nav:', this.nav);
+      console.log(ConversionUtils.stringToBase64('hello'));
       this.municipio = this.nav.Municipio;
       this.codMunicipio = this.nav.codMunicipio;
       this.versao = this.nav.Versao;
@@ -70,6 +71,10 @@ export class PageDefaultComponent implements OnInit {
       localStorage.setItem('config-nav', JSON.stringify(this.nav));
 
       this.xmlUnico =  this.PageService.getXmlUnico(this.nomeMetodo);
+      console.log(ConversionUtils.stringToBase64('<OI>'));
+      console.log( btoa("<OI>") );
+      console.log(ConversionUtils.base64ToString('hello'));
+
       // this.router.navigate(['/configurar']);
   }
 
@@ -102,7 +107,6 @@ export class PageDefaultComponent implements OnInit {
         this.xmlUnico3.modelo= jsonTSSNewNFse.modelo;
         this.xmlUnico3.xmlTss= atob(jsonTSSNewNFse.xmlTss);
         this.xmlUnico3.xmlPrefeitura = atob(jsonTSSNewNFse.xmlPrefeitura);
-        //this.xmlUnico = this.xmlUnico3.xmlTss;
       }, error =>{
         this.PageService.handleError(error)
       });
@@ -125,14 +129,14 @@ export class PageDefaultComponent implements OnInit {
   }
 
   ToEdit(){
-    console.log('Botão para editar . XML.');
-    //alert('Botão para editar . XML.');
-    this.PageService.showAlertSucess("Botão habilitado para EDIÇÃO do  .XML."),
+    console.log('BotÃ£o para editar . XML.');
+    //alert('BotÃ£o para editar . XML.');
+    this.PageService.showAlertSucess("BotÃ£o habilitado para EDIÃ‡ÃƒO do  .XML."),
     this.editar = false;
   }
 
   ToSave(event){
-    //alert('Botão para SALVAR .XML.');
+    //alert('BotÃƒÂ£o para SALVAR .XML.');
     console.log(event);
     console.log( this.xmlPrefeitura);
     this.xmlApiPost.municipio = this.municipio;
@@ -140,13 +144,29 @@ export class PageDefaultComponent implements OnInit {
     this.xmlApiPost.versao = this.versao;
     this.xmlApiPost.ativo = "S";
     this.xmlApiPost.provedor = this.provedor;
-    this.xmlApiPost.modelo = this.xmlUnico3.modelo;
-    this.xmlApiPost.xml_lote = btoa( this.xmlPrefeitura );
-    this.xmlApiPost.xmlTss = btoa( this.xmlUnico3.xmlTss );
+    //this.xmlApiPost.modelo = this.xmlUnico3.modelo;
+    this.xmlApiPost.xmlTss = btoa( this.xmlUnico );
+
+    if( this.nomeMetodo !== null && this.nomeMetodo !== undefined ){
+
+      if ( this.nomeMetodo.toUpperCase() == "PROVEDOR" ){
+        this.xmlApiPost.provedor = this.xmlPrefeitura ;
+      } else if ( this.nomeMetodo.toUpperCase() == "LOTE" ) {
+        this.xmlApiPost.xml_lote = btoa( this.xmlPrefeitura );
+      } else if ( this.nomeMetodo.toUpperCase() == "RPS" ) {
+      this.xmlApiPost.xml_rps = btoa( this.xmlPrefeitura );
+      } else if ( this.nomeMetodo.toUpperCase() == "CONSULTA LOTE" ) {
+      this.xmlApiPost.xmlconslot = btoa( this.xmlPrefeitura );
+      } else if ( this.nomeMetodo.toUpperCase() == "CONSULTA RPS" ) {
+      this.xmlApiPost.xmlconsrps = btoa( this.xmlPrefeitura );
+      } else if ( this.nomeMetodo.toUpperCase() == "CANCELAMENTO" ) {
+        this.xmlApiPost.xml_canc = btoa( this.xmlPrefeitura );
+      }
+    }
 
     this.PageService.post(this.xmlApiPost).subscribe(
       success =>{
-        this.PageService.showAlertSucess("Requisição Post, realizada com sucesso.")
+        this.PageService.showAlertSucess("RequisiÃ§Ã£o Post, realizada com sucesso.")
         //this.location.back()
       },
       error =>{

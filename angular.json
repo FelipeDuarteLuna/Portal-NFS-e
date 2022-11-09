@@ -29,6 +29,11 @@
                 "input": "node_modules/monaco-editor/min",
                 "output": "/assets/monaco/"
               },
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/min",
+                "output": "/assets/monaco/"
+              },
               "src/favicon.ico",
               "src/assets"
             ],
@@ -100,6 +105,11 @@
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/min",
+                "output": "/assets/monaco/"
+              },
               {
                 "glob": "**/*",
                 "input": "node_modules/monaco-editor/min",
