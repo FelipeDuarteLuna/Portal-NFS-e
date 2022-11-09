@@ -63,7 +63,6 @@ export class ConfigurarComponent implements OnInit{
 //Chamado Detalhes Configurar
 onClick_Detalhes(Event){
   console.log(' onClick_Detalhes, event: ', Event)
-  // this.router.navigate([Event.Detalhes], { state: { tituloPagina: Event.Modelo} });
   console.log(Event.Detalhes);
   this.router.navigate([Event.Detalhes],
     { state: { metodo: Event.Modelo, conteudoXml: Event.Conteudo, codMunicipio: this.Municipio, Municipio: this.xmlUnico3.DESC_MUN,
@@ -78,10 +77,11 @@ onClick_Detalhes(Event){
 //aqui para usar o input
     this.ConfigurarApi.GetPesquisa(this.Municipio).subscribe((jsonTSSNewNFse: MunGet) => {
 
-      //aqui monto os dados que serão carregados no xml
+    //aqui monto os dados que serão carregados no xml
     this.xmlUnico3.DESC_MUN = jsonTSSNewNFse["DESC_MUN"];
     this.xmlUnico3.VERSAO = jsonTSSNewNFse["VERSAO"];
     this.xmlUnico3.UF = jsonTSSNewNFse["UF"];
+    this.xmlUnico3.PROVEDOR = jsonTSSNewNFse["PROVEDOR"]; // luna
     //AQUI CARREGA A <POTABLE>
     this.items[0].Conteudo = jsonTSSNewNFse["PROVEDOR"];
     this.items[1].Conteudo = jsonTSSNewNFse["MODELO"];

@@ -22,8 +22,10 @@
     "@po-ui/ng-components": "^14.6.0",
     "@po-ui/ng-templates": "^14.6.0",
     "@totvs/po-theme": "^14.7.0",
+    "buffer": "^6.0.3",
     "rxjs": "~7.5.5",
     "tslib": "^2.3.0",
+    "turbocommons-ts": "^3.8.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
