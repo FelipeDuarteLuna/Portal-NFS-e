@@ -5,7 +5,7 @@
 
 <div class="p-label po-xl-4 po-lg-4 po-md-4 po-sm-4">
     <br>
-    <label>Informe o codigo do Municipio (IBGE) que deseja configurar:</label>
+    <label>Informe o código do Município (IBGE) que deseja configurar:</label>
     <br><br>
 
     <po-input p-icon="po-icon po-icon-search" class="comboPesquisa"
@@ -17,22 +17,10 @@
     p-clean="true"
     p-label=""
     p-mask="9999999"
+
     >
   </po-input>
-<!--
-  <po-combo p-icon="po-icon po-icon-search" class="comboPesquisa"
-    name="combo"
-    [(ngModel)]="xmlUnico3"
-    (ngModelChange)="comboPesquisa = $event"
-    (click)="onClick_Pesquisa($event)"
-    (p-change)="onClick_Pesquisa($event)"
-    p-change-on-enter="false"
-    p-disabled-init-filter="true"
-    p-disabled-tab-filter="false"
-    p-emit-object-value="true"
-  >
-  </po-combo>
--->
+
   <div class="divfooter">
       <h4 class="footer-text">Municí­pio: <b class="dados">{{ xmlUnico3.DESC_MUN }}</b></h4>
       <h4 class="footer-text">Estado:   <b class="dados">{{ xmlUnico3.UF }}</b></h4>

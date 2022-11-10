@@ -3,7 +3,7 @@ import { SamplePoTableTransportService } from './configurar-component.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { PoComboOptionGroup, PoMenuItem, PoSelectOption, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
-import { MunGet } from './configurar';
+import { MunGet, MunIbge } from './configurar';
 
 @Component({
   selector: 'app-configurar',
@@ -34,7 +34,9 @@ export class ConfigurarComponent implements OnInit{
   ];
   xmlUnico: string;
   Municipio: string;
-  xmlUnico3: MunGet = {};
+  xmlUnico3: MunGet = {
+    code: ''
+  };
 
     constructor(
       private transportService: SamplePoTableTransportService,
@@ -61,27 +63,61 @@ export class ConfigurarComponent implements OnInit{
     this.router.navigate(['/home']);
   }
 //Chamado Detalhes Configurar
-onClick_Detalhes(Event){
-  console.log(' onClick_Detalhes, event: ', Event)
-  // this.router.navigate([Event.Detalhes], { state: { tituloPagina: Event.Modelo} });
-  console.log(Event.Detalhes);
-  this.router.navigate([Event.Detalhes],
-    { state: { metodo: Event.Modelo, conteudoXml: Event.Conteudo, codMunicipio: this.Municipio, Municipio: this.xmlUnico3.DESC_MUN,
-      Versao: this.xmlUnico3.VERSAO, Provedor: this.xmlUnico3.PROVEDOR } });
-}
+  onClick_Detalhes(Event){
+    this.router.navigate([Event.Detalhes],
+      { state: { metodo: Event.Modelo, conteudoXml: Event.Conteudo, codMunicipio: this.Municipio, Municipio: this.xmlUnico3.DESC_MUN,
+        Versao: this.xmlUnico3.VERSAO, Provedor: this.xmlUnico3.PROVEDOR } });
+  }
   //Consulta Pesquisa codmun
   onClick_Pesquisa(event) {
-    //aqui para utilizar o po-combo
-    //this.Municipio = event.target.value;
-    //this.ConfigurarApi.GetPesquisa(this.Municipio).subscribe((jsonTSSNewNFse: MunGet) => {
 
-//aqui para usar o input
-    this.ConfigurarApi.GetPesquisa(this.Municipio).subscribe((jsonTSSNewNFse: MunGet) => {
+    this.ConfigurarApi.GetPesquisa(this.Municipio).subscribe(
+      success =>{
+        this.ConfigurarApi.showAlertSucess("Requisição Get, realizada com sucesso.")
+        if(typeof success.code == 'undefined'){
+          this.carregaTela(success)
+        }else if(success.code == '202'){
+            this.apiIbge(this.Municipio)
+        }
+      },
+      error =>{
+        this.ConfigurarApi.handleError(error);
+      }, () => console.log('Request completado com sucesso.')
+    );
 
-      //aqui monto os dados que ser�o carregados no xml
+  }
+
+  onClick_Export(){
+    alert('Exportar XML - PFD - DOC!!')
+  }
+
+  apiIbge(event){
+    this.ConfigurarApi.GetIbge(this.Municipio).subscribe((jsonTSSNewNFse: MunIbge) => {
+    this.xmlUnico3.DESC_MUN = jsonTSSNewNFse["nome"];
+    this.xmlUnico3.UF = jsonTSSNewNFse["regiao-imediata"]["regiao-intermediaria"].UF.sigla;
+    this.xmlUnico3.VERSAO = '';
+    this.items[0].Conteudo = '';
+    this.items[1].Conteudo = '';
+    this.items[2].Conteudo = '';
+    this.items[3].Conteudo = '';
+    this.items[4].Conteudo = '';
+    this.items[5].Conteudo = '';
+    this.items[6].Conteudo = '';
+    this.items[7].Conteudo = '';
+    this.items[8].Conteudo = '';
+    this.items[9].Conteudo = '';
+    this.items[10].Conteudo = '';
+    this.items[11].Conteudo = '';
+    this.items[12].Conteudo = '';
+     });
+  }
+
+  carregaTela(jsonTSSNewNFse: MunGet){
+
     this.xmlUnico3.DESC_MUN = jsonTSSNewNFse["DESC_MUN"];
     this.xmlUnico3.VERSAO = jsonTSSNewNFse["VERSAO"];
     this.xmlUnico3.UF = jsonTSSNewNFse["UF"];
+    this.xmlUnico3.PROVEDOR = jsonTSSNewNFse["PROVEDOR"]; // luna
     //AQUI CARREGA A <POTABLE>
     this.items[0].Conteudo = jsonTSSNewNFse["PROVEDOR"];
     this.items[1].Conteudo = jsonTSSNewNFse["MODELO"];
@@ -96,12 +132,5 @@ onClick_Detalhes(Event){
     this.items[10].Conteudo = atob(jsonTSSNewNFse["SIGN_RPS"]);
     this.items[11].Conteudo = atob(jsonTSSNewNFse["SIGN_CANC"]);
     this.items[12].Conteudo = atob(jsonTSSNewNFse["SIGN_CONSR"]);
-
-  });
-  }
-  onClick_Export(){
-    alert('Exportar XML ou PFD ou Doc!!')
-  }
+    }
 }
-
-

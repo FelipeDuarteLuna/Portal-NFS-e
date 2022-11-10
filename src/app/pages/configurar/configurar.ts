@@ -1,4 +1,5 @@
 export interface MunGet{
+  code: string;
 
   DESC_MUN?:  string;
   VERSAO?:    string;
@@ -18,4 +19,10 @@ export interface MunGet{
   SIGN_CONSR?:string;
   MUNICIPIO?: any;
 
+}
+export interface MunIbge{
+  id?:string;
+  nome?:string;
+  microrregiao?:string;
+  regiaoimediata?:string;
 }
