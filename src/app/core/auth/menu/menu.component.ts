@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from './menu.service';
-import { PoMenuItem, PoMenuModule } from '@po-ui/ng-components';
+import { PoMenuItem } from '@po-ui/ng-components';
 
 @Component({
   selector: 'app-menu',
@@ -33,9 +33,9 @@ export class MenuComponent implements OnInit {
       link: '/configurar'
     },
     {
-      label: 'Documentação',
+      label: 'DocumentaÃ§Ã£o',
       icon: 'po-icon po-icon-document-filled',
-      shortLabel: 'Documentação',
+      shortLabel: 'DocumentaÃ§Ã£o',
       link:'https://tdn.totvs.com/pages/releaseview.action?pageId=203771195',
 
     }

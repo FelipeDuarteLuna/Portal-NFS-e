@@ -26,11 +26,11 @@ export class LoginComponent implements OnInit {
 
 
   languages: Array<PoLanguage> = [
-    { language: 'pt', description: 'Português' }
+    { language: 'pt', description: 'PortuguÃªs' }
   ];
 
   customLiterals: PoPageLoginLiterals = {
-    loginPlaceholder: 'Insira seu usuário de acesso',
+    loginPlaceholder: 'Insira seu usuÃ¡rio de acesso',
     passwordPlaceholder: 'Insira sua senha de acesso',
     submitLabel: 'Acessar sistema',
     forgotPassword: 'Esqueceu sua senha?',
@@ -49,15 +49,6 @@ export class LoginComponent implements OnInit {
 
   goToLogin(event){
     this.authservice.checkLogin(event);
-    /*console.log("nickDev2022");
-    console.log(event);
-
-    if (event.login.toUpperCase() == "ADMIN" && event.password == "1" ) {
-      console.log("nickDev2022");
-      this.router.navigate(['home']);
-    } else {
-      console.log("Usário não autorizado, verifique as informações");
-    }*/
   }
 
 }

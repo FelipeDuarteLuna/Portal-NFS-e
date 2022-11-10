@@ -3,11 +3,6 @@
     <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
       <div class="container-text">Layout TSS<img class="icon-header" src="../../../../favicon.ico" width= 30px></div>
 
-      <!--<po-textarea name="textarea"
-      [(ngModel)]="xmlUnico"
-      p-rows=20>
-      </po-textarea>-->
-
       <po-code-editor
         [(ngModel)]="xmlUnico"
         p-height="484"
@@ -16,30 +11,13 @@
         [p-theme]="theme">
       </po-code-editor>
 
-
-
-      <!--div class="container">
-        <div class="divfooter">
-          <h4 class="footer-text">Municipio:  <b class="dados">Belo Horizonte - MG </b></h4>
-          <h4 class="footer-text">VersÃ£o:     <b class="dados">1.00</b></h4>
-          <h4 class="footer-text">Provedor:   <b class="dados">PrÃ³prio_2****</b></h4>
-        </div>
-
-        <div class="footer-icon">
-          <span class="icon po-icon po-icon-edit"></span>
-          <span class="icon po-icon po-icon-ok"></span>
-          <span class="icon po-icon po-icon-delete"></span>
-          <span class="icon po-icon po-icon-xml"></span>
-          <span class="icon po-icon po-icon-pdf"></span>
-        </div>
-      </div-->
     </div>
 
     <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
       <div class="container-text">Layout Prefeitura<span class="icon-header po-icon po-icon-company"></span></div>
 
         <po-code-editor
-          [(ngModel)]="xmlUnico3.xmlPrefeitura"
+          [(ngModel)]="xmlPrefeitura"
           p-height="484"
           [p-language]="language"
           [p-readonly]="editar"
@@ -50,9 +28,9 @@
 
       <div class="container">
         <div class="divfooter">
-          <h4 class="footer-text">Municipio: <b class="dados">{{ xmlUnico3.municipio }}</b></h4>
-          <h4 class="footer-text">Versão:    <b class="dados">{{ xmlUnico3.versao }}</b></h4>
-          <h4 class="footer-text">Provedor:  <b class="dados">{{ xmlUnico3.provedor }}</b></h4>
+          <h4 class="footer-text">Municipio: <b class="dados">{{ municipio }}</b></h4>
+          <h4 class="footer-text">Versão:    <b class="dados">{{ versao }}</b></h4>
+          <h4 class="footer-text">Provedor:  <b class="dados">{{ provedor }}</b></h4>
         </div>
 
         <div class="footer-icon">

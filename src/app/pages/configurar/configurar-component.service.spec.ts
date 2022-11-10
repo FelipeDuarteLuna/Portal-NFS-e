@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
+import { SamplePoTableTransportService } from './configurar-component.service';
 
-import { ConfigurarComponentService } from './configurar-component.service';
 
 describe('ConfigurarComponentService', () => {
-  let service: ConfigurarComponentService;
+  let service: SamplePoTableTransportService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ConfigurarComponentService);
+    service = TestBed.inject(SamplePoTableTransportService);
   });
 
   it('should be created', () => {

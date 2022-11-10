@@ -33,8 +33,6 @@ export class PageDefaultComponent implements OnInit {
   xmlUnico3: IRps = {};
   xmlApiPost: PageDefault = {};
 
-  parser = new DOMParser();
-
   codeEditor: string;
   language: string;
   properties: Array<string>;
@@ -46,7 +44,7 @@ export class PageDefaultComponent implements OnInit {
       private PageService: PageDefaultService,
       private location: Location,
       private router: Router,
-      private route: ActivatedRoute // Classe para obter parÃ¢metros, da rota ativa.
+      private route: ActivatedRoute // Classe para obter parâmetros, da rota ativa.
     ) {
 
     this.nav = this.router.getCurrentNavigation().extras.state;
@@ -74,8 +72,6 @@ export class PageDefaultComponent implements OnInit {
       console.log(ConversionUtils.stringToBase64('<OI>'));
       console.log( btoa("<OI>") );
       console.log(ConversionUtils.base64ToString('hello'));
-
-      // this.router.navigate(['/configurar']);
   }
 
   ngOnInit(): void {
@@ -129,14 +125,12 @@ export class PageDefaultComponent implements OnInit {
   }
 
   ToEdit(){
-    console.log('BotÃ£o para editar . XML.');
-    //alert('BotÃ£o para editar . XML.');
-    this.PageService.showAlertSucess("BotÃ£o habilitado para EDIÃ‡ÃƒO do  .XML."),
+    console.log('Botão para editar . XML.');
+    this.PageService.showAlertSucess("Botão habilitado para EDIÇÃO do  .XML."),
     this.editar = false;
   }
 
   ToSave(event){
-    //alert('BotÃƒÂ£o para SALVAR .XML.');
     console.log(event);
     console.log( this.xmlPrefeitura);
     this.xmlApiPost.municipio = this.municipio;
@@ -144,7 +138,6 @@ export class PageDefaultComponent implements OnInit {
     this.xmlApiPost.versao = this.versao;
     this.xmlApiPost.ativo = "S";
     this.xmlApiPost.provedor = this.provedor;
-    //this.xmlApiPost.modelo = this.xmlUnico3.modelo;
     this.xmlApiPost.xmlTss = btoa( this.xmlUnico );
 
     if( this.nomeMetodo !== null && this.nomeMetodo !== undefined ){
@@ -166,8 +159,10 @@ export class PageDefaultComponent implements OnInit {
 
     this.PageService.post(this.xmlApiPost).subscribe(
       success =>{
-        this.PageService.showAlertSucess("RequisiÃ§Ã£o Post, realizada com sucesso.")
-        //this.location.back()
+        this.PageService.showAlertSucess("Requisição Post, realizada com sucesso.");
+        setTimeout(() => {
+          this.location.back();
+        }, 2000 );
       },
       error =>{
         this.PageService.handleError(error)
