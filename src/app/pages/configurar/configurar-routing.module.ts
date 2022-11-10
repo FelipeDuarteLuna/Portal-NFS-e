@@ -9,11 +9,8 @@ import { PageDefaultComponent } from './page-default/page-default.component';
 
 const routes: Routes = [
   { path: '', component: ConfigurarComponent },
-  //{ path: 'configurar', component: ConfigurarComponent },
   //{ path: 'home', component: HomeComponent },
   { path: 'rps', component: RpsComponent, canActivate:[AuthGuard] },
-  //{ path: 'lote', component: PageDefaultComponent, canActivate:[AuthGuard]},
-  //{ path: 'cancelamento', component: PageDefaultComponent, canActivate:[AuthGuard]},
   { path: ':id', component: PageDefaultComponent, canActivate:[AuthGuard]},
 ];
 

@@ -9,7 +9,7 @@ export class AppService {
 
   isLogged() {
     console.log(sessionStorage);
-    return !!(sessionStorage.getItem('User')); //Retorna se est„o logado.
+    return !!(sessionStorage.getItem('User')); //Retorna se est√£o logado.
   }
 
 }

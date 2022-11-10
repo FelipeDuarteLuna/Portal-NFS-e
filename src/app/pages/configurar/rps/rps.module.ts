@@ -1,6 +1,5 @@
 import { RpsComponent } from './rps.component';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { PoFieldModule, PoModule } from '@po-ui/ng-components';
 import { RouterModule } from '@angular/router';
@@ -13,7 +12,6 @@ import { PoCodeEditorModule } from '@po-ui/ng-code-editor';
 @NgModule({
   declarations: [ RpsComponent ],
   imports: [
-    // BrowserModule,
     PoModule,
     RouterModule,
     PoTemplatesModule,

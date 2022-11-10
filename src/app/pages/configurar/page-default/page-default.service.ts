@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, take, throwError } from 'rxjs';
+import { take, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { PoNotification, PoNotificationService, PoToasterOrientation } from '@po-ui/ng-components';
@@ -14,17 +14,14 @@ import { PageDefault } from './PageDefault';
 export class PageDefaultService {
 
   xmlUnico: string;
-  parser = new DOMParser();
   xmlParse:any = '';
   xmlUnico4: any = '';
   endPontGET : String = 'getmunicipio';
   endPontPOST : String = 'setmunicipio';
 
-  //private readonly API = 'http://localhost:3000/tssNewNfse'; Chamando o endereço direto da API
-  //private readonly API = environment.API; //Quando o endereço for http://localhost:3000/tssNewNfse
-  private readonly API = `${environment.API}tssNewNfse`;
- //private readonly API_RENAN = 'http://10.173.5.18:8080/rest/api/v1/SchemaConv/'; //Chamando o endereço direto da API
-  private readonly API_RENAN = 'http://localhost:1322/rest/api/v1/apinewnfse/'; //Chamando o endereço direto da API
+  private readonly API = `${environment.API}tssNewNfse`; //private readonly API = 'http://localhost:3000/tssNewNfse'; Chamando o endereço direto da API
+//  private readonly API_RENAN = 'http://localhost:1322/rest/api/v1/apinewnfse/'; //Chamando o endereço direto da API
+private readonly API_RENAN = 'http://10.173.9.20:8080/rest/api/v1/apinewnfse/'; //Chamando o endereço direto da API
 
   constructor(
       private http: HttpClient,
@@ -57,11 +54,9 @@ export class PageDefaultService {
   list(){
     //return  this.http.get(this.API); Retorna o arquivo .json completo
     return  this.http.get<IRps>(this.API);
-    //return  this.http.get<IRps>(`${this.API}${this.endPontGET}`);  // return this.http.get(`${this.URL_API}${this.endpoint}`, { params });
   }
 
   GetRenans2Lucia(){
-    //return  this.http.get(this.API); Retorna o arquivo .json completo
 
     return  this.http.get<IRps>(`${this.API}${this.endPontGET}`);  // return this.http.get(`${this.URL_API}${this.endpoint}`, { params });
   }
@@ -70,7 +65,6 @@ export class PageDefaultService {
 
     console.log(jsonPostNewNfse);
     return this.http.post(`${this.API_RENAN}${this.endPontPOST}`, jsonPostNewNfse).pipe(take(1));
-    //return this.http.post(`${this.API_RENAN}${this.endPontPOST}`, jsonTSSNewNFse).pipe(take(1)); //`${this.URL_API}${this.endpointpost}`
   }
 
   handleError(err: HttpErrorResponse) {
