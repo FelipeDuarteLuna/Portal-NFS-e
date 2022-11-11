@@ -62,18 +62,22 @@ export class ConfigurarComponent implements OnInit{
   onClick_Home() {
     this.router.navigate(['/home']);
   }
+  
 //Chamado Detalhes Configurar
-  onClick_Detalhes(Event){
-    this.router.navigate([Event.Detalhes],
-      { state: { metodo: Event.Modelo, conteudoXml: Event.Conteudo, codMunicipio: this.Municipio, Municipio: this.xmlUnico3.DESC_MUN,
-        Versao: this.xmlUnico3.VERSAO, Provedor: this.xmlUnico3.PROVEDOR } });
-  }
+onClick_Detalhes(Event){
+  console.log(' onClick_Detalhes, event: ', Event)
+  console.log(Event.Detalhes);
+  this.router.navigate([Event.Detalhes],
+    { state: { metodo: Event.Modelo, conteudoXml: Event.Conteudo, codMunicipio: this.Municipio, Municipio: this.xmlUnico3.DESC_MUN,
+      Versao: this.xmlUnico3.VERSAO, Provedor: this.xmlUnico3.PROVEDOR } });
+}
+
   //Consulta Pesquisa codmun
   onClick_Pesquisa(event) {
 
     this.ConfigurarApi.GetPesquisa(this.Municipio).subscribe(
       success =>{
-        this.ConfigurarApi.showAlertSucess("Requisição Get, realizada com sucesso.")
+        this.ConfigurarApi.showAlertSucess("RequisiÃ§Ã£o Get, realizada com sucesso.")
         if(typeof success.code == 'undefined'){
           this.carregaTela(success)
         }else if(success.code == '202'){
@@ -113,7 +117,7 @@ export class ConfigurarComponent implements OnInit{
   }
 
   carregaTela(jsonTSSNewNFse: MunGet){
-
+    //aqui monto os dados que serão carregados no xml
     this.xmlUnico3.DESC_MUN = jsonTSSNewNFse["DESC_MUN"];
     this.xmlUnico3.VERSAO = jsonTSSNewNFse["VERSAO"];
     this.xmlUnico3.UF = jsonTSSNewNFse["UF"];

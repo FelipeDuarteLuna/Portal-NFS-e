@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
         return false;
     } else {
         this.mostraMenuEmit.emit(true);
-        console.log('Passou no cancativate do guardi„o');
+        console.log('Passou no cancativate do guardi√£o');
         return true;
     }
   }
