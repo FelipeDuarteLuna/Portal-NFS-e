@@ -20,8 +20,8 @@ export class PageDefaultService {
   endPontPOST : String = 'setmunicipio';
 
   private readonly API = `${environment.API}tssNewNfse`; //private readonly API = 'http://localhost:3000/tssNewNfse'; Chamando o endereço direto da API
-//  private readonly API_RENAN = 'http://localhost:1322/rest/api/v1/apinewnfse/'; //Chamando o endereço direto da API
-private readonly API_RENAN = 'http://10.173.9.20:8080/rest/api/v1/apinewnfse/'; //Chamando o endereço direto da API
+  private readonly API_RENAN = 'http://localhost:1322/rest/api/v1/apinewnfse/'; //Chamando o endereço direto da API
+//private readonly API_RENAN = 'http://10.173.9.20:8080/rest/api/v1/apinewnfse/'; //Chamando o endereço direto da API
 
   constructor(
       private http: HttpClient,

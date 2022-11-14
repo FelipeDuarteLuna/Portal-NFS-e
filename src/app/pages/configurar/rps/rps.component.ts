@@ -138,17 +138,17 @@ export class RpsComponent implements OnInit {
   ToSave(event){
     console.log(event);
     console.log( this.xmlPrefeitura);
-    this.xmlApiPost.municipio = this.municipio;
-    this.xmlApiPost.cod_mun = this.codMunicipio;
-    this.xmlApiPost.versao = this.versao;
-    this.xmlApiPost.ativo = "S";
-    this.xmlApiPost.provedor = this.provedor;
-    this.xmlApiPost.xmlTss = btoa( this.xmlUnico );
+    this.xmlApiPost.DESC_MUN = this.municipio;
+    this.xmlApiPost.COD_MUN = this.codMunicipio;
+    this.xmlApiPost.VERSAO = this.versao;
+    this.xmlApiPost.ATIVO = "S";
+    this.xmlApiPost.PROVEDOR = this.provedor;
+    this.xmlApiPost.XML_TSS = btoa( this.xmlUnico );
 
     if( this.nomeMetodo !== null && this.nomeMetodo !== undefined ){
 
       if ( this.nomeMetodo.toUpperCase() == "RPS" ) {
-      this.xmlApiPost.xml_rps = btoa( this.xmlPrefeitura );
+      this.xmlApiPost.XML_RPS = btoa( this.xmlPrefeitura );
       }
     }
 

@@ -62,7 +62,7 @@ export class ConfigurarComponent implements OnInit{
   onClick_Home() {
     this.router.navigate(['/home']);
   }
-  
+
 //Chamado Detalhes Configurar
 onClick_Detalhes(Event){
   console.log(' onClick_Detalhes, event: ', Event)
@@ -77,7 +77,7 @@ onClick_Detalhes(Event){
 
     this.ConfigurarApi.GetPesquisa(this.Municipio).subscribe(
       success =>{
-        this.ConfigurarApi.showAlertSucess("RequisiÃ§Ã£o Get, realizada com sucesso.")
+        this.ConfigurarApi.showAlertSucess("Requisição Get, realizada com sucesso.")
         if(typeof success.code == 'undefined'){
           this.carregaTela(success)
         }else if(success.code == '202'){
