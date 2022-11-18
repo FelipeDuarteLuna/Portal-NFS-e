@@ -21,11 +21,17 @@
     >
   </po-input>
 
-  <div class="divfooter">
+  <div class="divfooter" [hidden]="xmlUnico3.PROVEDOR">
       <h4 class="footer-text">Município: <b class="dados">{{ xmlUnico3.DESC_MUN }}</b></h4>
       <h4 class="footer-text">Estado:   <b class="dados">{{ xmlUnico3.UF }}</b></h4>
-      <h4 class="footer-text">Versão:   <b class="dados">{{ xmlUnico3.VERSAO }}</b></h4>
+      <h4 class="footer-text">Versão:   <b class="dadosVersao">{{ xmlUnico3.VERSAO }}</b></h4>
   </div>
+  <div class="divfooter" [hidden]="!xmlUnico3.PROVEDOR">
+    <h4 class="footer-text">Município: <b class="dados">{{ xmlUnico3.DESC_MUN }}</b></h4>
+    <h4 class="footer-text">Estado:   <b class="dados">{{ xmlUnico3.UF }}</b></h4>
+    <h4 class="footer-text">Versão:   <b class="dados">{{ xmlUnico3.VERSAO }}</b></h4>
+</div>
+
 
   <figure>
     <img src="../../../assets/imagens//nfse_nacional.png" alt="Logo NFS-e" width= 250px height=230px>
@@ -46,7 +52,7 @@
       [p-items]="items"
       [p-striped]="true"
       [p-hide-text-overflow]="true"
-
+      [p-hide-columns-manager]="false"
       >
       </po-table>
     </div>
