@@ -28,7 +28,7 @@ export class AuthService {
       this.router.navigate(['/home']);
     } else {
       this.mostraMenuEmitter.emit(false);
-      this.PoNotificationService.error("Usuário incorreto, verifique as informações!")
+      this.PoNotificationService.error("Usuário incorreto, verifique as informações!");
     }
   }
 }

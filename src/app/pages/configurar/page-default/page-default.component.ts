@@ -1,3 +1,4 @@
+import { ConfigurarComponent } from './../configurar.component';
 import { Component, OnInit } from '@angular/core';
 import { PoMenuItem } from '@po-ui/ng-components';
 
@@ -7,6 +8,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IRps } from '../rps/rps';
 import { PageDefault } from './PageDefault';
 import { ConversionUtils } from 'turbocommons-ts';
+import { PoLoadingModule } from '@po-ui/ng-components';
+import { ConfigurarModule } from '../configurar.module';
+import { SamplePoTableTransportService } from '../configurar-component.service';
+import { ConfigurarApi } from '../configurar.service';
+
 
 
 @Component({
@@ -20,6 +26,7 @@ export class PageDefaultComponent implements OnInit {
 
   menuItemSelected: string;
   municipio: string;
+  uf: string;
   codMunicipio: string;
   versao: string;
   provedor: string;
@@ -39,6 +46,9 @@ export class PageDefaultComponent implements OnInit {
   theme: string;
   editar: boolean;
   nav: any;
+
+  //isLoading = true;
+
 
   constructor(
       private PageService: PageDefaultService,
@@ -61,6 +71,7 @@ export class PageDefaultComponent implements OnInit {
       console.log('entrei no PAGE DEFAULT ngOnInit, nav:', this.nav);
       console.log(ConversionUtils.stringToBase64('hello'));
       this.municipio = this.nav.Municipio;
+      this.uf = this.nav.UF;
       this.codMunicipio = this.nav.codMunicipio;
       this.versao = this.nav.Versao;
       this.provedor = this.nav.Provedor;
@@ -131,9 +142,11 @@ export class PageDefaultComponent implements OnInit {
   }
 
   ToSave(event){
+    //this.isLoading = false;
     console.log(event);
     console.log( this.xmlPrefeitura);
     this.xmlApiPost.DESC_MUN = this.municipio;
+    this.xmlApiPost.UF = this.uf;
     this.xmlApiPost.COD_MUN = this.codMunicipio;
     this.xmlApiPost.VERSAO = this.versao;
     this.xmlApiPost.ATIVO = "S";
@@ -144,6 +157,8 @@ export class PageDefaultComponent implements OnInit {
 
       if ( this.nomeMetodo.toUpperCase() == "PROVEDOR" ){
         this.xmlApiPost.PROVEDOR = this.xmlPrefeitura ;
+      }else if ( this.nomeMetodo.toUpperCase() == "MODELO" ) {
+        this.xmlApiPost.MODELO =  this.xmlPrefeitura ;
       } else if ( this.nomeMetodo.toUpperCase() == "LOTE" ) {
         this.xmlApiPost.XML_LOTE = btoa( this.xmlPrefeitura );
       } else if ( this.nomeMetodo.toUpperCase() == "RPS" ) {
@@ -154,17 +169,32 @@ export class PageDefaultComponent implements OnInit {
       this.xmlApiPost.XMLCONSRPS = btoa( this.xmlPrefeitura );
       } else if ( this.nomeMetodo.toUpperCase() == "CANCELAMENTO" ) {
         this.xmlApiPost.XML_CANC = btoa( this.xmlPrefeitura );
+      }else if ( this.nomeMetodo.toUpperCase() == "WSDL PRODUÇÃO" ) {
+        this.xmlApiPost.WSDL_PROD = btoa( this.xmlPrefeitura );
+      } else if ( this.nomeMetodo.toUpperCase() == "WSDL HOMOLOGAÇÃO" ) {
+        this.xmlApiPost.WSDL_HOMO = btoa( this.xmlPrefeitura );
+      } else if ( this.nomeMetodo.toUpperCase() == "SIGN LOTE" ) {
+        this.xmlApiPost.SIGN_LOTE = btoa( this.xmlPrefeitura );
+      } else if ( this.nomeMetodo.toUpperCase() == "SIGN RPS" ) {
+        this.xmlApiPost.SIGN_RPS = btoa( this.xmlPrefeitura );
+      } else if ( this.nomeMetodo.toUpperCase() == "SIGN CANC" ) {
+        this.xmlApiPost.SIGN_CANC = btoa( this.xmlPrefeitura );
+      } else if ( this.nomeMetodo.toUpperCase() == "SIGN CONS" ) {
+        this.xmlApiPost.SIGN_CONSR =  btoa( this.xmlPrefeitura );
       }
     }
 
     this.PageService.post(this.xmlApiPost).subscribe(
       success =>{
+        //this.isLoading = true;
         this.PageService.showAlertSucess("Requisição Post, realizada com sucesso.");
         setTimeout(() => {
           this.location.back();
         }, 2000 );
+
       },
       error =>{
+        //this.isLoading = true;
         this.PageService.handleError(error)
       }, () => console.log('Request completado com sucesso.')
     );
