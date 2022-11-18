@@ -12,7 +12,7 @@ export class SamplePoTableTransportService {
       { property: 'Status', type: 'label',  width: '15%',
         labels: [
           { value: '1', color: 'color-10', label: ' Concluido' },
-          { value: '2', color: 'color-08', label: ' Pendente .' },
+          { value: '2', color: 'color-08', label: ' Pendente ' },
           { value: '3', color: 'color-07', label: ' Cancelado' }
         ]
       },
@@ -24,19 +24,19 @@ export class SamplePoTableTransportService {
   getItems(): Array<any> {
     return [
       {
-        Modelo: 'Provedor',
-        Conteudo: '',
         Status: '2',
+        Conteudo: '',
+        Modelo: 'Provedor',
         Detalhes: 'configurar/Provedor',
       },
       {
-        Status: '1',
+        Status: '2',
         Conteudo: '',
         Modelo: 'Modelo',
         Detalhes: '/Modelo',
       },
       {
-        Status: '1',
+        Status: '2',
         Conteudo: '',
         Modelo: 'Lote',
         Detalhes: 'configurar/Lote',
@@ -60,7 +60,7 @@ export class SamplePoTableTransportService {
         Detalhes: 'configurar/Consulta RPS',
       },
       {
-        Status: '3',
+        Status: '2',
         Conteudo: '',
         Modelo: 'Cancelamento',
         Detalhes: 'configurar/Cancelamento',

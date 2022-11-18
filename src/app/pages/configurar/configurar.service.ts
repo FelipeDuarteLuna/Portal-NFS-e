@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PoNotification, PoNotificationService, PoToasterOrientation } from '@po-ui/ng-components';
+import { PoNotificationService } from '@po-ui/ng-components';
 import { throwError } from 'rxjs';
 import { MunGet, MunIbge } from './configurar';
 
