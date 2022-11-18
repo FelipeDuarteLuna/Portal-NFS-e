@@ -69,7 +69,7 @@ onClick_Detalhes(Event){
   console.log(Event.Detalhes);
   this.router.navigate([Event.Detalhes],
     { state: { metodo: Event.Modelo, conteudoXml: Event.Conteudo, codMunicipio: this.Municipio, Municipio: this.xmlUnico3.DESC_MUN,
-      Versao: this.xmlUnico3.VERSAO, Provedor: this.xmlUnico3.PROVEDOR } });
+     UF: this.xmlUnico3.UF, Versao: this.xmlUnico3.VERSAO, Provedor: this.xmlUnico3.PROVEDOR } });
 }
 
   //Consulta Pesquisa codmun
@@ -78,7 +78,7 @@ onClick_Detalhes(Event){
     this.ConfigurarApi.GetPesquisa(this.Municipio).subscribe(
       success =>{
         //Retirado confirmação do Get
-      //  this.ConfigurarApi.showAlertSucess("Requisição Get, realizada com sucesso.")
+        // this.ConfigurarApi.showAlertSucess("Requisição Get, realizada com sucesso.")
         if(typeof success.code == 'undefined'){
           this.carregaTela(success)
         }else if(success.code == '202'){
