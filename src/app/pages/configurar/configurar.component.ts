@@ -69,7 +69,7 @@ onClick_Detalhes(Event){
   console.log(Event.Detalhes);
   this.router.navigate([Event.Detalhes],
     { state: { metodo: Event.Modelo, conteudoXml: Event.Conteudo, codMunicipio: this.Municipio, Municipio: this.xmlUnico3.DESC_MUN,
-      Versao: this.xmlUnico3.VERSAO, Provedor: this.xmlUnico3.PROVEDOR } });
+     UF: this.xmlUnico3.UF, Versao: this.xmlUnico3.VERSAO, Provedor: this.xmlUnico3.PROVEDOR } });
 }
 
   //Consulta Pesquisa codmun
