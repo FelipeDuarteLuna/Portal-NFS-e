@@ -79,7 +79,6 @@ export class RpsComponent implements OnInit {
       this.id = params['id']
       if(this.id) {
         localStorage.setItem('config-item', this.id)
-        //this.menuItemSelected = `Configurar > ${this.id}`;
         this.menuItemSelected = "Configurar > RPS";
 
       } else {
@@ -93,25 +92,6 @@ export class RpsComponent implements OnInit {
     });
 
     this.restore();
-
-    //this.RpsService.list().subscribe(dadosjson => this.xmlUnico3 = dadosjson);
-
-    if( this.xmlPrefeitura == '' || this.xmlPrefeitura == null  || this.xmlPrefeitura == undefined ){
-      console.log("api do RENAN");
-      this.RpsService.list().subscribe((jsonTSSNewNFse: IRps) => {
-
-        console.log('jsonTSSNewNFse', jsonTSSNewNFse.cod_mun);
-        this.xmlUnico3.municipio = jsonTSSNewNFse.municipio;
-        this.xmlUnico3.cod_mun = jsonTSSNewNFse.cod_mun;
-        this.xmlUnico3.provedor= jsonTSSNewNFse.provedor;
-        this.xmlUnico3.versao= jsonTSSNewNFse.versao;
-        this.xmlUnico3.modelo= jsonTSSNewNFse.modelo;
-        this.xmlUnico3.xmlTss= atob(jsonTSSNewNFse.xmlTss);
-        this.xmlUnico3.xmlPrefeitura = atob(jsonTSSNewNFse.xmlPrefeitura);
-      }, error =>{
-        this.RpsService.handleError(error)
-      });
-    }
 
   }
 
@@ -130,8 +110,6 @@ export class RpsComponent implements OnInit {
   }
 
   ToEdit(){
-    console.log('Botão para editar . XML.');
-    this.RpsService.showAlertSucess("Botão habilitado para EDIÇÃO do  .XML."),
     this.editar = false;
   }
 
@@ -154,13 +132,13 @@ export class RpsComponent implements OnInit {
 
     this.RpsService.post(this.xmlApiPost).subscribe(
       success =>{
-        this.RpsService.showAlertSucess("Requisição Post, realizada com sucesso.");
+        //this.RpsService.showAlertSucess("Requisição Post, realizada com sucesso.");
         setTimeout(() => {
           this.location.back();
         }, 2000 );
       },
       error =>{
-        this.RpsService.handleError(error)
+        //this.RpsService.handleError(error)
       }, () => console.log('Request completado com sucesso.')
     );
 

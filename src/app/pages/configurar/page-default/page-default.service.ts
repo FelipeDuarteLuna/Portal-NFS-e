@@ -66,8 +66,8 @@ export class PageDefaultService {
   }
 
   list(){
-    //return  this.http.get(this.API); Retorna o arquivo .json completo
-    return  this.http.get<IRps>(this.API);
+
+    return  this.http.get<IRps>(this.API); //return  this.http.get(this.API); Retorna o arquivo .json completo
   }
 
   GetRenans2Lucia(){

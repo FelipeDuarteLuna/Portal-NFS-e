@@ -1,4 +1,15 @@
 <div class="po-wrapper" >
-  <app-menu *ngIf="mostraMenu" ></app-menu>
+  <po-toolbar p-title="TSS - NFS-e" [p-show-notification]="false" *ngIf="mostraMenu"></po-toolbar>
+
+  <po-menu
+     *ngIf="mostraMenu"
+      [p-collapsed]="true"
+      p-filter
+      [p-menus]="menus"
+      [p-service]="MenuService"
+      p-logo="/assets/imagens/logo_totvs_branco.png">
+  </po-menu>
+
+  <!--app-menu *ngIf="mostraMenu" ></!--app-menu-->
   <router-outlet></router-outlet>
 </div>

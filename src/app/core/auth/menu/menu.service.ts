@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+/*import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { map } from 'rxjs/operators';
@@ -17,4 +17,4 @@ export class MenuService implements PoMenuFilter {
 
     return this.http.get(this.url, { params }).pipe(map((response: any) => response.items));
   }
-}
+}*/
