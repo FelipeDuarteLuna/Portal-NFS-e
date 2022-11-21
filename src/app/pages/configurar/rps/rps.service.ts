@@ -48,13 +48,11 @@ export class RpsService {
 
   GetRenans2Lucia(){
 
-    //return  this.http.get(this.API); Retorna o arquivo .json completo
-    return  this.http.get<IRps>(`${this.API}${this.endPontGET}`);  // return this.http.get(`${this.URL_API}${this.endpoint}`, { params });
+    return  this.http.get<IRps>(`${this.API}${this.endPontGET}`);  //return  this.http.get(this.API); Retorna o arquivo .json completo
   }
 
   post( jsonPostNewNfse: PageDefault ){
 
-    console.log(jsonPostNewNfse);
     return this.http.post(`${this.API_RENAN}${this.endPontPOST}`, jsonPostNewNfse).pipe(take(1));
   }
 

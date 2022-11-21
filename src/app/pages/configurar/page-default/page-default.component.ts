@@ -14,7 +14,6 @@ import { SamplePoTableTransportService } from '../configurar-component.service';
 import { ConfigurarApi } from '../configurar.service';
 
 
-
 @Component({
   selector: 'pageDefault',
   templateUrl: './page-default.component.html',
@@ -58,18 +57,10 @@ export class PageDefaultComponent implements OnInit {
     ) {
 
     this.nav = this.router.getCurrentNavigation().extras.state;
-    console.log("hi", !this.nav);
     if(!this.nav) {
-      console.log('errou')
       const navStorage = localStorage.getItem('config-nav');
-      console.log(JSON.parse(navStorage));
-
       this.nav = JSON.parse(navStorage);
     }
-
-      console.log('entrei no rps');
-      console.log('entrei no PAGE DEFAULT ngOnInit, nav:', this.nav);
-      console.log(ConversionUtils.stringToBase64('hello'));
       this.municipio = this.nav.Municipio;
       this.uf = this.nav.UF;
       this.codMunicipio = this.nav.codMunicipio;
@@ -95,29 +86,11 @@ export class PageDefaultComponent implements OnInit {
       } else {
         const nav = localStorage.getItem('config-nav');
         const id = localStorage.getItem('config-item');
-        console.log({id});
       }
 
     });
 
     this.restore();
-
-    if( this.xmlPrefeitura == '' || this.xmlPrefeitura == null  || this.xmlPrefeitura == undefined ){
-      console.log("api do RENAN");
-      this.PageService.list().subscribe((jsonTSSNewNFse: IRps) => {
-
-        console.log('jsonTSSNewNFse', jsonTSSNewNFse.cod_mun);
-        this.xmlUnico3.municipio = jsonTSSNewNFse.municipio;
-        this.xmlUnico3.cod_mun = jsonTSSNewNFse.cod_mun;
-        this.xmlUnico3.provedor= jsonTSSNewNFse.provedor;
-        this.xmlUnico3.versao= jsonTSSNewNFse.versao;
-        this.xmlUnico3.modelo= jsonTSSNewNFse.modelo;
-        this.xmlUnico3.xmlTss= atob(jsonTSSNewNFse.xmlTss);
-        this.xmlUnico3.xmlPrefeitura = atob(jsonTSSNewNFse.xmlPrefeitura);
-      }, error =>{
-        this.PageService.handleError(error)
-      });
-    }
 
   }
 
@@ -136,8 +109,7 @@ export class PageDefaultComponent implements OnInit {
   }
 
   ToEdit(){
-    console.log('Botão para editar . XML.');
-    this.PageService.showAlertSucess("Botão habilitado para EDIÇÃO do  .XML."),
+    //this.PageService.showAlertSucess("Botão habilitado para EDIÇÃO do  .XML."),
     this.editar = false;
   }
 
@@ -187,15 +159,12 @@ export class PageDefaultComponent implements OnInit {
     this.PageService.post(this.xmlApiPost).subscribe(
       success =>{
         //this.isLoading = true;
-        this.PageService.showAlertSucess("Requisição Post, realizada com sucesso.");
         setTimeout(() => {
           this.location.back();
         }, 2000 );
-
       },
       error =>{
         //this.isLoading = true;
-        this.PageService.handleError(error)
       }, () => console.log('Request completado com sucesso.')
     );
 

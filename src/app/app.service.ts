@@ -1,9 +1,34 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+import { PoMenuFilter, PoMenuItemFiltered } from '@po-ui/ng-components';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppService {
+
+@Injectable()
+export class MenuService implements PoMenuFilter {
+  private url: string = 'https://po-sample-api.herokuapp.com/v1/menus';
+
+  constructor(private http: HttpClient) {}
+
+  getFilteredData(search: string): Observable<Array<PoMenuItemFiltered>> {
+    const params = { search };
+
+    return this.http.get(this.url, { params }).pipe(map((response: any) => response.items));
+  }
+
+  isLogged() {
+    console.log(sessionStorage);
+    return !!(sessionStorage.getItem('User')); //Retorna se estão logado.
+  }
+
+}
+
+/*export class AppService {
 
   constructor() { }
 
@@ -12,4 +37,4 @@ export class AppService {
     return !!(sessionStorage.getItem('User')); //Retorna se estão logado.
   }
 
-}
+}*/

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 import { MenuService } from './menu.service';
 import { PoMenuItem } from '@po-ui/ng-components';
 
@@ -53,3 +53,4 @@ export class MenuComponent implements OnInit {
     console.log('Menu ativo.');
   }
 }
+*/

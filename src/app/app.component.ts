@@ -1,19 +1,51 @@
+import { MenuService } from 'src/app/app.service';
+import { Component, OnInit } from '@angular/core';
+import { PoMenuItem } from '@po-ui/ng-components';
 import { AuthService } from './login/auth.service';
-import { Component } from '@angular/core';
 import { AuthGuard } from './core/auth/auth.guard';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  providers: [MenuService],
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+
+export class AppComponent implements OnInit {
+
   title = 'Portal-Nfse';
+  menuItemSelected: string;
 
   mostraMenu: boolean = false;
 
+  menus: Array<PoMenuItem> = [
+    {
+      label: 'Home',
+      action: this.printMenuAction.bind(this),
+      icon: 'po-icon po-icon-home',
+      shortLabel: 'Home',
+      link: '/home'
+    },
+    {
+      label: 'Configurar',
+      action: this.printMenuAction.bind(this),
+      icon: 'po-icon po-icon-xml',
+      shortLabel: 'Configurar',
+      link: '/configurar'
+    },
+    {
+      label: 'Documentação',
+      icon: 'po-icon po-icon-document-filled',
+      shortLabel: 'Documentação',
+      link:'https://tdn.totvs.com/pages/releaseview.action?pageId=203771195',
+
+    }
+  ];
+
   constructor( private authService: AuthService,
-    private authGuard: AuthGuard ) {
+    private authGuard: AuthGuard,
+    public MenuService: MenuService ) {
 
   }
 
@@ -22,4 +54,15 @@ export class AppComponent {
       mostra => this.mostraMenu = mostra
     );
   }
+
+  widgetClicadoDocumetacao(){
+    window.open("https://tdn.totvs.com/pages/releaseview.action?pageId=203771195", '_blank');
+  }
+
+  printMenuAction(menu: PoMenuItem) {
+    this.menuItemSelected = menu.label;
+    console.log(this);
+    console.log('Menu ativo.');
+  }
+
 }
