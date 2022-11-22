@@ -38,6 +38,12 @@ export class SamplePoTableTransportService {
       {
         Status: '2',
         Conteudo: '',
+        Modelo: 'Versão',
+        Detalhes: 'configurar/Versao',
+      },
+      {
+        Status: '2',
+        Conteudo: '',
         Modelo: 'Lote',
         Detalhes: 'configurar/Lote',
       },

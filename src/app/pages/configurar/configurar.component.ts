@@ -103,19 +103,33 @@ onClick_Detalhes(Event){
     this.xmlUnico3.VERSAO = 'Município não homologado no TSS.';
     this.xmlUnico3.PROVEDOR = '';
     this.items[0].Conteudo = '';
+    this.items[0].Status = '2'
     this.items[1].Conteudo = '';
+    this.items[1].Status = '2'
     this.items[2].Conteudo = '';
+    this.items[2].Status = '2'
     this.items[3].Conteudo = '';
+    this.items[3].Status = '2'
     this.items[4].Conteudo = '';
+    this.items[4].Status = '2'
     this.items[5].Conteudo = '';
+    this.items[5].Status = '2'
     this.items[6].Conteudo = '';
+    this.items[6].Status = '2'
     this.items[7].Conteudo = '';
+    this.items[7].Status = '2'
     this.items[8].Conteudo = '';
+    this.items[8].Status = '2'
     this.items[9].Conteudo = '';
+    this.items[9].Status = '2'
     this.items[10].Conteudo = '';
+    this.items[10].Status = '2'
     this.items[11].Conteudo = '';
+    this.items[11].Status = '2'
     this.items[12].Conteudo = '';
-
+    this.items[12].Status = '2'
+    this.items[13].Conteudo = '';
+    this.items[13].Status = '2'
      });
   }
 
@@ -129,29 +143,44 @@ onClick_Detalhes(Event){
 
     (jsonTSSNewNFse["PROVEDOR"]==undefined ? this.items[0].Conteudo = '' : this.items[0].Conteudo = jsonTSSNewNFse["PROVEDOR"]);
     (this.items[0].Conteudo=='' ? this.items[0].Status = '2' : this.items[0].Status = '1');
+
     (jsonTSSNewNFse["MODELO"] ==undefined ? this.items[1].Conteudo ='' : this.items[1].Conteudo = jsonTSSNewNFse["MODELO"]);
     (this.items[1].Conteudo =='' ? this.items[1].Status = '2' : this.items[1].Status = '1');
-    (jsonTSSNewNFse["XML_LOTE"] ==undefined ? this.items[2].Conteudo ='' : this.items[2].Conteudo = atob(jsonTSSNewNFse["XML_LOTE"]));
-    (this.items[2].Conteudo=='' ? this.items[2].Status = '2' : this.items[2].Status = '1');
-    (jsonTSSNewNFse["XML_RPS"]==undefined ? this.items[3].Conteudo = '' : this.items[3].Conteudo = atob(jsonTSSNewNFse["XML_RPS"]));
+
+    (jsonTSSNewNFse["VERSAO"] ==undefined ? this.items[2].Conteudo ='' : this.items[2].Conteudo = jsonTSSNewNFse["VERSAO"]);
+    (this.items[2].Conteudo =='' ? this.items[2].Status = '2' : this.items[2].Status = '1');
+
+    (jsonTSSNewNFse["XML_LOTE"] ==undefined ? this.items[3].Conteudo ='' : this.items[3].Conteudo = atob(jsonTSSNewNFse["XML_LOTE"]));
     (this.items[3].Conteudo=='' ? this.items[3].Status = '2' : this.items[3].Status = '1');
-    (jsonTSSNewNFse["XMLCONSLOT"]==undefined ? this.items[4].Conteudo = '' : this.items[4].Conteudo = atob(jsonTSSNewNFse["XMLCONSLOT"]));
+
+    (jsonTSSNewNFse["XML_RPS"]==undefined ? this.items[4].Conteudo = '' : this.items[4].Conteudo = atob(jsonTSSNewNFse["XML_RPS"]));
     (this.items[4].Conteudo=='' ? this.items[4].Status = '2' : this.items[4].Status = '1');
-    (jsonTSSNewNFse["XMLCONSRPS"]==undefined ? this.items[5].Conteudo = '' : this.items[5].Conteudo = atob(jsonTSSNewNFse["XMLCONSRPS"]));
+
+    (jsonTSSNewNFse["XMLCONSLOT"]==undefined ? this.items[5].Conteudo = '' : this.items[5].Conteudo = atob(jsonTSSNewNFse["XMLCONSLOT"]));
     (this.items[5].Conteudo=='' ? this.items[5].Status = '2' : this.items[5].Status = '1');
-    (jsonTSSNewNFse["XML_CANC"]==undefined ? this.items[6].Conteudo = '' : this.items[6].Conteudo = atob(jsonTSSNewNFse["XML_CANC"]));
+
+    (jsonTSSNewNFse["XMLCONSRPS"]==undefined ? this.items[6].Conteudo = '' : this.items[6].Conteudo = atob(jsonTSSNewNFse["XMLCONSRPS"]));
     (this.items[6].Conteudo=='' ? this.items[6].Status = '2' : this.items[6].Status = '1');
-    (jsonTSSNewNFse["WSDL_PROD"]==undefined ? this.items[7].Conteudo = '' : this.items[7].Conteudo = atob(jsonTSSNewNFse["WSDL_PROD"]));
+
+    (jsonTSSNewNFse["XML_CANC"]==undefined ? this.items[7].Conteudo = '' : this.items[7].Conteudo = atob(jsonTSSNewNFse["XML_CANC"]));
     (this.items[7].Conteudo=='' ? this.items[7].Status = '2' : this.items[7].Status = '1');
-    (jsonTSSNewNFse["WSDL_HOMO"]==undefined ? this.items[8].Conteudo ='' : this.items[8].Conteudo = atob(jsonTSSNewNFse["WSDL_HOMO"]));
+
+    (jsonTSSNewNFse["WSDL_PROD"]==undefined ? this.items[8].Conteudo = '' : this.items[8].Conteudo = atob(jsonTSSNewNFse["WSDL_PROD"]));
     (this.items[8].Conteudo=='' ? this.items[8].Status = '2' : this.items[8].Status = '1');
-    (jsonTSSNewNFse["SIGN_LOTE"]==undefined ? this.items[9].Conteudo ='' : this.items[9].Conteudo = atob(jsonTSSNewNFse["SIGN_LOTE"]));
+
+    (jsonTSSNewNFse["WSDL_HOMO"]==undefined ? this.items[9].Conteudo ='' : this.items[9].Conteudo = atob(jsonTSSNewNFse["WSDL_HOMO"]));
     (this.items[9].Conteudo=='' ? this.items[9].Status = '2' : this.items[9].Status = '1');
-    (jsonTSSNewNFse["SIGN_RPS"]==undefined ? this.items[10].Conteudo ='' : this.items[10].Conteudo = atob(jsonTSSNewNFse["SIGN_RPS"]));
+
+    (jsonTSSNewNFse["SIGN_LOTE"]==undefined ? this.items[10].Conteudo ='' : this.items[10].Conteudo = atob(jsonTSSNewNFse["SIGN_LOTE"]));
     (this.items[10].Conteudo=='' ? this.items[10].Status = '2' : this.items[10].Status = '1');
-    (jsonTSSNewNFse["SIGN_CANC"]==undefined ? this.items[11].Conteudo ='' : this.items[11].Conteudo = atob(jsonTSSNewNFse["SIGN_CANC"]));
+
+    (jsonTSSNewNFse["SIGN_RPS"]==undefined ? this.items[11].Conteudo ='' : this.items[11].Conteudo = atob(jsonTSSNewNFse["SIGN_RPS"]));
     (this.items[11].Conteudo=='' ? this.items[11].Status = '2' : this.items[11].Status = '1');
-    (jsonTSSNewNFse["SIGN_CONSR"]==undefined ? this.items[12].Conteudo ='' : this.items[12].Conteudo = atob(jsonTSSNewNFse["SIGN_CONSR"]));
+
+    (jsonTSSNewNFse["SIGN_CANC"]==undefined ? this.items[12].Conteudo ='' : this.items[12].Conteudo = atob(jsonTSSNewNFse["SIGN_CANC"]));
     (this.items[12].Conteudo=='' ? this.items[12].Status = '2' : this.items[12].Status = '1');
+
+    (jsonTSSNewNFse["SIGN_CONSR"]==undefined ? this.items[13].Conteudo ='' : this.items[13].Conteudo = atob(jsonTSSNewNFse["SIGN_CONSR"]));
+    (this.items[13].Conteudo=='' ? this.items[13].Status = '2' : this.items[13].Status = '1');
     }
 }
