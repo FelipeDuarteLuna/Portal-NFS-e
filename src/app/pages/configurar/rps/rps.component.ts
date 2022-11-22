@@ -132,7 +132,8 @@ export class RpsComponent implements OnInit {
 
     this.RpsService.post(this.xmlApiPost).subscribe(
       success =>{
-        //this.RpsService.showAlertSucess("Requisição Post, realizada com sucesso.");
+        sessionStorage.setItem('CodMunIBGE', this.codMunicipio);
+        this.RpsService.showAlertSucess("Requisição Post, realizada com sucesso.");
         setTimeout(() => {
           this.location.back();
         }, 2000 );

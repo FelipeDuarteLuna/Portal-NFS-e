@@ -69,6 +69,7 @@ export class PageDefaultComponent implements OnInit {
       this.nomeMetodo = this.nav.metodo;
       this.xmlPrefeitura = this.nav.conteudoXml;
       localStorage.setItem('config-nav', JSON.stringify(this.nav));
+      sessionStorage.setItem('CodMunIBGE', this.codMunicipio); // luna
 
       this.xmlUnico =  this.PageService.getXmlUnico(this.nomeMetodo);
       console.log(ConversionUtils.stringToBase64('<OI>'));
@@ -109,8 +110,8 @@ export class PageDefaultComponent implements OnInit {
   }
 
   ToEdit(){
-    //this.PageService.showAlertSucess("Botão habilitado para EDIÇÃO do  .XML."),
-    this.editar = false;
+
+    this.editar = false; //this.PageService.showAlertSucess("Botão habilitado para EDIÇÃO do  .XML."),
   }
 
   ToSave(event){
@@ -159,9 +160,11 @@ export class PageDefaultComponent implements OnInit {
     this.PageService.post(this.xmlApiPost).subscribe(
       success =>{
         //this.isLoading = true;
+        sessionStorage.setItem('CodMunIBGE', this.codMunicipio);  // luna
+        this.PageService.showAlertSucess("Requisição Post, realizada com sucesso.");
         setTimeout(() => {
           this.location.back();
-        }, 2000 );
+        }, 3000 );
       },
       error =>{
         //this.isLoading = true;

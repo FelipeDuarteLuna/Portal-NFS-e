@@ -23,6 +23,8 @@ export class ConfigurarComponent implements OnInit{
   columns: Array<PoTableColumn>;
   items: Array<any>;
 
+  codMunicipio: any;
+
   Detalhes: Array<PoTableAction> = [
     {label:"Detalhes", action: this.onClick_Detalhes.bind(this) }
   ];
@@ -50,7 +52,17 @@ export class ConfigurarComponent implements OnInit{
       this.items = this.transportService.getItems();
       this.menuItemSelected = 'Configurar > Modelo';
       this.ConfigurarApi.httpClient = this.Municipio
+
+      this.codMunicipio = sessionStorage.getItem("CodMunIBGE");
+
+      if( this.codMunicipio !== null && this.codMunicipio !== undefined ){
+
+          console.log("ngOnInit", this.codMunicipio);
+          this.Municipio = this.codMunicipio;
+          this.onClick_Pesquisa();
+
       }
+    }
 
     printMenuAction(menu: PoMenuItem) {
       this.menuItemSelected = menu.label;
@@ -73,7 +85,7 @@ onClick_Detalhes(Event){
 }
 
   //Consulta Pesquisa codmun
-  onClick_Pesquisa(event) {
+  onClick_Pesquisa(event?) {
 
     this.ConfigurarApi.GetPesquisa(this.Municipio).subscribe(
       success =>{
@@ -87,7 +99,11 @@ onClick_Detalhes(Event){
       },
       error =>{
         this.ConfigurarApi.handleError(error);
-      }, () => console.log('Request completado com sucesso.')
+      },
+      () => {
+          console.log('Request completado com sucesso.');
+          sessionStorage.removeItem( "CodMunIBGE" );
+      }
     );
 
   }
@@ -124,7 +140,7 @@ onClick_Detalhes(Event){
     this.xmlUnico3.DESC_MUN = jsonTSSNewNFse["DESC_MUN"];
     this.xmlUnico3.VERSAO = jsonTSSNewNFse["VERSAO"];
     this.xmlUnico3.UF = jsonTSSNewNFse["UF"];
-    this.xmlUnico3.PROVEDOR = jsonTSSNewNFse["PROVEDOR"]; // luna
+    this.xmlUnico3.PROVEDOR = jsonTSSNewNFse["PROVEDOR"];
     //AQUI CARREGA A <POTABLE>
 
     (jsonTSSNewNFse["PROVEDOR"]==undefined ? this.items[0].Conteudo = '' : this.items[0].Conteudo = jsonTSSNewNFse["PROVEDOR"]);
