@@ -147,6 +147,8 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
         this.xmlApiPost.SIGN_CANC = btoa( this.xmlPrefeitura );
       } else if ( this.nomeMetodo.toUpperCase() == "SIGN CONS" ) {
         this.xmlApiPost.SIGN_CONSR =  btoa( this.xmlPrefeitura );
+      } else if (this.nomeMetodo.toUpperCase() == "DE PARA"){
+        this.xmlApiPost.XML_DEPARA = btoa( this.xmlPrefeitura );
       }
     }
 
