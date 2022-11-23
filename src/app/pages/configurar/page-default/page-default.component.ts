@@ -1,5 +1,4 @@
-import { ConfigurarComponent } from './../configurar.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PoMenuItem } from '@po-ui/ng-components';
 
 import { PageDefaultService } from './page-default.service';
@@ -8,11 +7,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IRps } from '../rps/rps';
 import { PageDefault } from './PageDefault';
 import { ConversionUtils } from 'turbocommons-ts';
-import { PoLoadingModule } from '@po-ui/ng-components';
-import { ConfigurarModule } from '../configurar.module';
-import { SamplePoTableTransportService } from '../configurar-component.service';
-import { ConfigurarApi } from '../configurar.service';
-
 
 @Component({
   selector: 'pageDefault',
@@ -21,7 +15,7 @@ import { ConfigurarApi } from '../configurar.service';
   providers: [PageDefaultService]
 })
 
-export class PageDefaultComponent implements OnInit {
+export class PageDefaultComponent implements OnInit, OnDestroy {
 
   menuItemSelected: string;
   municipio: string;
@@ -34,6 +28,7 @@ export class PageDefaultComponent implements OnInit {
   nomeMetodo: string;
 
   private sub: any;
+  private sub2: any;
   id: string;
 
   xmlUnico3: IRps = {};
@@ -45,9 +40,6 @@ export class PageDefaultComponent implements OnInit {
   theme: string;
   editar: boolean;
   nav: any;
-
-  //isLoading = true;
-
 
   constructor(
       private PageService: PageDefaultService,
@@ -69,7 +61,7 @@ export class PageDefaultComponent implements OnInit {
       this.nomeMetodo = this.nav.metodo;
       this.xmlPrefeitura = this.nav.conteudoXml;
       localStorage.setItem('config-nav', JSON.stringify(this.nav));
-      sessionStorage.setItem('CodMunIBGE', this.codMunicipio); // luna
+      sessionStorage.setItem('CodMunIBGE', this.codMunicipio);
 
       this.xmlUnico =  this.PageService.getXmlUnico(this.nomeMetodo);
       console.log(ConversionUtils.stringToBase64('<OI>'));
@@ -88,11 +80,9 @@ export class PageDefaultComponent implements OnInit {
         const nav = localStorage.getItem('config-nav');
         const id = localStorage.getItem('config-item');
       }
-
     });
 
     this.restore();
-
   }
 
   printMenuAction(menu: PoMenuItem) {
@@ -109,13 +99,13 @@ export class PageDefaultComponent implements OnInit {
     this.editar = true;
   }
 
+
   ToEdit(){
 
     this.editar = false; //this.PageService.showAlertSucess("Botão habilitado para EDIÇÃO do  .XML."),
   }
 
   ToSave(event){
-    //this.isLoading = false;
     console.log(event);
     console.log( this.xmlPrefeitura);
     this.xmlApiPost.DESC_MUN = this.municipio;
@@ -157,20 +147,24 @@ export class PageDefaultComponent implements OnInit {
       }
     }
 
-    this.PageService.post(this.xmlApiPost).subscribe(
+    this.sub2 = this.PageService.post(this.xmlApiPost).subscribe(
       success =>{
-        //this.isLoading = true;
-        sessionStorage.setItem('CodMunIBGE', this.codMunicipio);  // luna
-        this.PageService.showAlertSucess("Requisição Post, realizada com sucesso.");
+        sessionStorage.setItem('CodMunIBGE', this.codMunicipio);
+        this.PageService.showAlertSucess("Gravação realizada com sucesso.");
         setTimeout(() => {
           this.location.back();
         }, 3000 );
       },
       error =>{
-        //this.isLoading = true;
-      }, () => console.log('Request completado com sucesso.')
+      }, () => console.log('Request POST, completado com sucesso.', this.sub2)
     );
 
+  }
+
+  ngOnDestroy(): void {
+
+    this.sub.unsubscribe();
+    this.sub2.unsubscribe();
   }
 
 }

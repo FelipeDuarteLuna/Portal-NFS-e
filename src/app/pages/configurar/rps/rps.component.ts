@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PoMenuItem } from '@po-ui/ng-components';
 import { IRps } from './rps';
 import { RpsService } from './rps.service';
@@ -8,7 +8,6 @@ import { PageDefault } from '../page-default/PageDefault';
 import { ConversionUtils } from 'turbocommons-ts';
 
 
-
 @Component({
   selector: 'app-rps',
   templateUrl: './rps.component.html',
@@ -16,7 +15,7 @@ import { ConversionUtils } from 'turbocommons-ts';
   providers: [RpsService]
 })
 
-export class RpsComponent implements OnInit {
+export class RpsComponent implements OnInit, OnDestroy {
 
   menuItemSelected: string;
   municipio: string;
@@ -28,6 +27,7 @@ export class RpsComponent implements OnInit {
   nomeMetodo: string;
 
   private sub: any;
+  private sub2: any;
   id: string;
 
   xmlUnico3: IRps = {};
@@ -130,19 +130,25 @@ export class RpsComponent implements OnInit {
       }
     }
 
-    this.RpsService.post(this.xmlApiPost).subscribe(
+    this.sub2 = this.RpsService.post(this.xmlApiPost).subscribe(
       success =>{
         sessionStorage.setItem('CodMunIBGE', this.codMunicipio);
-        this.RpsService.showAlertSucess("Requisição Post, realizada com sucesso.");
+        this.RpsService.showAlertSucess("Gravação realizada com sucesso.");
         setTimeout(() => {
           this.location.back();
         }, 2000 );
       },
       error =>{
-        //this.RpsService.handleError(error)
-      }, () => console.log('Request completado com sucesso.')
+      }, () => console.log('Request POST, realizado com sucesso.')
     );
 
+  }
+
+
+  ngOnDestroy(): void {
+
+    this.sub.unsubscribe();
+    this.sub2.unsubscribe();
   }
 
 }
