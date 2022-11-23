@@ -13,11 +13,10 @@
     [(ngModel)]="Municipio"
     (ngModelChange)="Municipio = $event"
     p-auto-focus="true"
-    (p-change)="onClick_Pesquisa($event)"
+    (p-change)="validaCampo($event)"
     p-clean="true"
     p-label=""
     p-mask="9999999"
-
     >
   </po-input>
 

@@ -37,7 +37,7 @@ export class ConfigurarComponent implements OnInit{
   xmlUnico: string;
   Municipio: string;
   xmlUnico3: MunGet = {
-  code: ''
+  code: '',name:'', Descricao:''
   };
 
     constructor(
@@ -89,14 +89,12 @@ onClick_Detalhes(Event){
 
     this.ConfigurarApi.GetPesquisa(this.Municipio).subscribe(
       success =>{
-        //Retirado confirmação do Get
-        // this.ConfigurarApi.showAlertSucess("Requisição Get, realizada com sucesso.")
         if(typeof success.code == 'undefined'){
           this.carregaTela(success)
-        }else if(success.code == '202'){
-            this.apiIbge(this.Municipio)
+        }else if(success.name == 'Not Found'){
+          this.apiIbge(this.Municipio)
         }
-      },
+    },
       error =>{
         this.ConfigurarApi.handleError(error);
       },
@@ -114,40 +112,25 @@ onClick_Detalhes(Event){
 
   apiIbge(event){
     this.ConfigurarApi.GetIbge(this.Municipio).subscribe((jsonTSSNewNFse: MunIbge) => {
-    this.xmlUnico3.DESC_MUN = jsonTSSNewNFse["nome"];
-    this.xmlUnico3.UF = jsonTSSNewNFse["regiao-imediata"]["regiao-intermediaria"].UF.sigla;
-    this.xmlUnico3.VERSAO = 'Município não homologado no TSS.';
+
+    if(jsonTSSNewNFse["nome"] == undefined){
+      this.xmlUnico3.DESC_MUN = '';
+      this.xmlUnico3.UF = '';
+      this.xmlUnico3.VERSAO = '';
+      alert('Digite um código de município válido!');
+    }else{
+      this.xmlUnico3.DESC_MUN = jsonTSSNewNFse["nome"];
+      this.xmlUnico3.UF = jsonTSSNewNFse["regiao-imediata"]["regiao-intermediaria"].UF.sigla;
+      this.xmlUnico3.VERSAO = 'Município não homologado no TSS.';
+    };
+    //Limpando os campos do grid
+    for(let i = 0; i<= this.items.length; i++){
+      this.items[i].Conteudo = '';
+      this.items[i].Status = '2'
+    }
     this.xmlUnico3.PROVEDOR = '';
-    this.items[0].Conteudo = '';
-    this.items[0].Status = '2'
-    this.items[1].Conteudo = '';
-    this.items[1].Status = '2'
-    this.items[2].Conteudo = '';
-    this.items[2].Status = '2'
-    this.items[3].Conteudo = '';
-    this.items[3].Status = '2'
-    this.items[4].Conteudo = '';
-    this.items[4].Status = '2'
-    this.items[5].Conteudo = '';
-    this.items[5].Status = '2'
-    this.items[6].Conteudo = '';
-    this.items[6].Status = '2'
-    this.items[7].Conteudo = '';
-    this.items[7].Status = '2'
-    this.items[8].Conteudo = '';
-    this.items[8].Status = '2'
-    this.items[9].Conteudo = '';
-    this.items[9].Status = '2'
-    this.items[10].Conteudo = '';
-    this.items[10].Status = '2'
-    this.items[11].Conteudo = '';
-    this.items[11].Status = '2'
-    this.items[12].Conteudo = '';
-    this.items[12].Status = '2'
-    this.items[13].Conteudo = '';
-    this.items[13].Status = '2'
-     });
-  }
+  });
+}
 
   carregaTela(jsonTSSNewNFse: MunGet){
     //aqui monto os dados que serão carregados no xml
@@ -199,4 +182,20 @@ onClick_Detalhes(Event){
     (jsonTSSNewNFse["SIGN_CONSR"]==undefined ? this.items[13].Conteudo ='' : this.items[13].Conteudo = atob(jsonTSSNewNFse["SIGN_CONSR"]));
     (this.items[13].Conteudo=='' ? this.items[13].Status = '2' : this.items[13].Status = '1');
     }
+
+
+    validaCampo(event){
+
+      if(event.length < 7){
+        alert("Código IBGE contém 7 números.");
+      }else if(event.length == 7){
+        alert("7 dígitos.");
+        this.onClick_Pesquisa(event);
+      };
+
+
+    }
+
+
+
 }
