@@ -1,4 +1,6 @@
 export interface MunGet{
+  Descricao: string;
+  name: string;
   code: string;
 
   DESC_MUN?:  string;

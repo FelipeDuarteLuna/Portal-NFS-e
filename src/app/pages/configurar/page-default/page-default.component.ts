@@ -132,6 +132,9 @@ export class PageDefaultComponent implements OnInit {
         this.xmlApiPost.PROVEDOR = this.xmlPrefeitura ;
       }else if ( this.nomeMetodo.toUpperCase() == "MODELO" ) {
         this.xmlApiPost.MODELO =  this.xmlPrefeitura ;
+//versão
+      }else if ( this.nomeMetodo.toUpperCase() == "VERSAO" ) {
+        this.xmlApiPost.VERSAO =  this.xmlPrefeitura ;
       } else if ( this.nomeMetodo.toUpperCase() == "LOTE" ) {
         this.xmlApiPost.XML_LOTE = btoa( this.xmlPrefeitura );
       } else if ( this.nomeMetodo.toUpperCase() == "RPS" ) {
