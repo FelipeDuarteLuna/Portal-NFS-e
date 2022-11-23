@@ -111,7 +111,7 @@ export class SamplePoTableTransportService {
         Status: '2',
         Conteudo: '',
         Modelo: 'De Para',
-        Detalhes: '/',
+        Detalhes: 'configurar/De Para',
       }
     ];
   }
