@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IRps } from '../rps/rps';
 import { PageDefault } from './PageDefault';
 import { ConversionUtils } from 'turbocommons-ts';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'pageDefault',
@@ -29,6 +30,8 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
 
   private sub: any;
   private sub2: any;
+  private subscription: Subscription [] = [] ;
+
   id: string;
 
   xmlUnico3: IRps = {};
@@ -75,7 +78,6 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
       if(this.id) {
         localStorage.setItem('config-item', this.id)
         this.menuItemSelected = `Configurar > ${this.id}`;
-
       } else {
         const nav = localStorage.getItem('config-nav');
         const id = localStorage.getItem('config-item');
@@ -83,6 +85,8 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
     });
 
     this.restore();
+
+    this.subscription.push( this.sub );
   }
 
   printMenuAction(menu: PoMenuItem) {
@@ -164,12 +168,18 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
       }, () => console.log('Request POST, completado com sucesso.', this.sub2)
     );
 
+    this.subscription.push( this.sub2 );
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
 
-    this.sub.unsubscribe();
-    this.sub2.unsubscribe();
+    this.subscription.forEach( ( subscription ) => {
+
+      console.log('ngOnDestroy DESTRIUI, completado com sucesso.', subscription)
+      subscription.unsubscribe()
+    });
+    //this.sub.unsubscribe();
+    //this.sub2.unsubscribe();
   }
 
 }
