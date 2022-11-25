@@ -30,7 +30,7 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
 
   private sub: any;
   private sub2: any;
-  private subscription: Subscription [] = [] ;
+  private subscriptions: Subscription [] = [] ;
 
   id: string;
 
@@ -86,7 +86,7 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
 
     this.restore();
 
-    this.subscription.push( this.sub );
+    this.subscriptions.push( this.sub );
   }
 
   printMenuAction(menu: PoMenuItem) {
@@ -168,20 +168,16 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
       }, () => console.log('Request POST, completado com sucesso.', this.sub2)
     );
 
-    this.subscription.push( this.sub2 );
+    this.subscriptions.push( this.sub2 );
   }
 
   ngOnDestroy() {
 
-    this.subscription.forEach( ( subscription ) => {
+    this.subscriptions.forEach( ( subscription ) => {
 
       console.log('ngOnDestroy DESTRIUI, completado com sucesso.', subscription)
       subscription.unsubscribe()
     });
-    //this.sub.unsubscribe();
-    //this.sub2.unsubscribe();
   }
 
 }
-
-
