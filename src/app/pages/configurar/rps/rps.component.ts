@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageDefault } from '../page-default/PageDefault';
 import { ConversionUtils } from 'turbocommons-ts';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class RpsComponent implements OnInit, OnDestroy {
 
   menuItemSelected: string;
   municipio: string;
+  uf: string;
   codMunicipio: string;
   versao: string;
   provedor: string;
@@ -28,6 +30,8 @@ export class RpsComponent implements OnInit, OnDestroy {
 
   private sub: any;
   private sub2: any;
+  private subscriptions: Subscription [] = [] ;
+
   id: string;
 
   xmlUnico3: IRps = {};
@@ -48,25 +52,19 @@ export class RpsComponent implements OnInit, OnDestroy {
     ) {
 
     this.nav = this.router.getCurrentNavigation().extras.state;
-    console.log("hi", !this.nav);
     if(!this.nav) {
-      console.log('errou')
-      const navStorage = localStorage.getItem('config-nav');
-      console.log(JSON.parse(navStorage));
-
+      const navStorage = sessionStorage.getItem('config-nav');
       this.nav = JSON.parse(navStorage);
     }
-
-      console.log('entrei no rps');
-      console.log('entrei no PAGE DEFAULT ngOnInit, nav:', this.nav);
-      console.log(ConversionUtils.stringToBase64('hello'));
       this.municipio = this.nav.Municipio;
+      this.uf = this.nav.UF;
       this.codMunicipio = this.nav.codMunicipio;
       this.versao = this.nav.Versao;
       this.provedor = this.nav.Provedor;
       this.nomeMetodo = this.nav.metodo;
       this.xmlPrefeitura = this.nav.conteudoXml;
-      localStorage.setItem('config-nav', JSON.stringify(this.nav));
+      sessionStorage.setItem('config-nav', JSON.stringify(this.nav));
+      sessionStorage.setItem('CodMunIBGE', this.codMunicipio);
 
       this.xmlUnico =  this.RpsService.getXmlUnico(this.nomeMetodo);
       console.log(ConversionUtils.stringToBase64('<OI>'));
@@ -78,21 +76,18 @@ export class RpsComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id']
       if(this.id) {
-        localStorage.setItem('config-item', this.id)
+        sessionStorage.setItem('config-item', this.id)
         this.menuItemSelected = "Configurar > RPS";
-
       } else {
-        const nav = localStorage.getItem('config-nav');
-        const id = localStorage.getItem('config-item');
-        console.log({id});
+        const nav = sessionStorage.getItem('config-nav');
+        const id = sessionStorage.getItem('config-item');
       }
-
       this.menuItemSelected = "Configurar > RPS";
-
     });
 
     this.restore();
 
+    this.subscriptions.push( this.sub );
   }
 
   printMenuAction(menu: PoMenuItem) {
@@ -109,7 +104,9 @@ export class RpsComponent implements OnInit, OnDestroy {
     this.editar = true;
   }
 
+
   ToEdit(){
+
     this.editar = false;
   }
 
@@ -117,6 +114,7 @@ export class RpsComponent implements OnInit, OnDestroy {
     console.log(event);
     console.log( this.xmlPrefeitura);
     this.xmlApiPost.DESC_MUN = this.municipio;
+    this.xmlApiPost.UF = this.uf;
     this.xmlApiPost.COD_MUN = this.codMunicipio;
     this.xmlApiPost.VERSAO = this.versao;
     this.xmlApiPost.ATIVO = "S";
@@ -136,19 +134,22 @@ export class RpsComponent implements OnInit, OnDestroy {
         this.RpsService.showAlertSucess("Gravação realizada com sucesso.");
         setTimeout(() => {
           this.location.back();
-        }, 2000 );
+        }, 3000 );
       },
       error =>{
-      }, () => console.log('Request POST, realizado com sucesso.')
+      }, () => console.log('Request POST, completado com sucesso.', this.sub2)
     );
 
+    this.subscriptions.push( this.sub2 );
   }
 
+  ngOnDestroy() {
 
-  ngOnDestroy(): void {
+    this.subscriptions.forEach( ( subscription ) => {
 
-    this.sub.unsubscribe();
-    this.sub2.unsubscribe();
+      console.log('ngOnDestroy DESTRIUI, completado com sucesso.', subscription)
+      subscription.unsubscribe()
+    });
   }
 
 }
