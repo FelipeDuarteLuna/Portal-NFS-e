@@ -1,6 +1,9 @@
 <po-page-default [p-title]="menuItemSelected">
+  <div (click)="onBack()">
+    <img class="Header-backpage" src="../../../../assets/imagens/Voltar.png" width= 30px >
+  </div>
   <div class="po-row">
-    <!--po-loading-overlay [hidden]="isLoading"></!--po-loading-overlay-->
+    <!--po-loading-overlay [hidden]="isLoading">[p-actions]="actions"  <po-button p-label="Voltar" (p-click)="onBack()" p-kind="primary"></po-button></!--po-loading-overlay-->
     <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
       <div class="container-text">Layout TSS<img class="icon-header" src="../../../../favicon.ico" width= 30px></div>
 

@@ -51,7 +51,7 @@ export class SamplePoTableTransportService {
         Status: '2',
         Conteudo: '',
         Modelo: 'RPS',
-        Detalhes: 'configurar/rps',
+        Detalhes: 'configurar/RPS',
       },
       {
         Status: '2',

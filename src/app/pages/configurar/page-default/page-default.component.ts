@@ -171,6 +171,15 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
     this.subscriptions.push( this.sub2 );
   }
 
+  onBack() {
+    this.location.back();
+  }
+
+  public actions = [
+        { action: this.onBack.bind(this), icon: 'po-icon-news' },
+      ];
+
+
   ngOnDestroy() {
 
     this.subscriptions.forEach( ( subscription ) => {
