@@ -10,15 +10,16 @@
 
     <po-input p-icon="po-icon po-icon-search" class="comboPesquisa"
     name="input"
+    (p-change)="validaCampo($event)"
     [(ngModel)]="Municipio"
     (ngModelChange)="Municipio = $event"
     p-auto-focus="true"
-    (p-change)="validaCampo($event)"
     p-clean="true"
     p-label=""
     p-mask="9999999"
+    (keyup.enter)=validaCampo($event)
     >
-  </po-input>
+    </po-input>
 
   <div class="divfooter" [hidden]="xmlUnico3.PROVEDOR">
       <h4 class="footer-text">Município: <b class="dados">{{ xmlUnico3.DESC_MUN }}</b></h4>

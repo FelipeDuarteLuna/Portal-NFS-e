@@ -113,16 +113,22 @@ onClick_Detalhes(Event){
   apiIbge(event){
     this.ConfigurarApi.GetIbge(this.Municipio).subscribe((jsonTSSNewNFse: MunIbge) => {
 
-    if(jsonTSSNewNFse["nome"] == undefined){
+    if(jsonTSSNewNFse["nome"] == undefined && jsonTSSNewNFse.length == 0){
       this.xmlUnico3.DESC_MUN = '';
       this.xmlUnico3.UF = '';
       this.xmlUnico3.VERSAO = '';
-      alert('Digite um código de município válido!');
     }else{
       this.xmlUnico3.DESC_MUN = jsonTSSNewNFse["nome"];
       this.xmlUnico3.UF = jsonTSSNewNFse["regiao-imediata"]["regiao-intermediaria"].UF.sigla;
       this.xmlUnico3.VERSAO = 'Município não homologado no TSS.';
     };
+
+    if(event.length < 7 && event.length > 0  ){
+      alert("Digite um código IBGE válido, com 7 dígitos.");
+    }else if(jsonTSSNewNFse["nome"] == undefined && jsonTSSNewNFse.length == 0){
+      alert('Digite um código de município válido!');
+    };
+
     //Limpando os campos do grid
     for(let i = 0; i<= this.items.length; i++){
       this.items[i].Conteudo = '';
@@ -190,10 +196,10 @@ onClick_Detalhes(Event){
 
     validaCampo(event){
 
-      if(event.length < 7){
-        alert("Código IBGE contém 7 números.");
+      if(event.length < 7 && event.length > 0  ){
+       // alert("Digite um código IBGE válido, com 7 dígitos.");
+        this.apiIbge(event);
       }else if(event.length == 7){
-        alert("7 dígitos.");
         this.onClick_Pesquisa(event);
       };
 

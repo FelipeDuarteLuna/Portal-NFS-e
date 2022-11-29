@@ -23,6 +23,7 @@ export interface MunGet{
 
 }
 export interface MunIbge{
+  length: number;
   id?:string;
   nome?:string;
   microrregiao?:string;
