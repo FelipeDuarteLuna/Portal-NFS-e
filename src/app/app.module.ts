@@ -9,7 +9,6 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './login/auth.service';
 import { AuthGuard } from './core/auth/auth.guard';
 import { NgModule } from '@angular/core';
-import { RpsConfigModule } from './pages/configurar/rps/rps.module';
 import { PoCodeEditorModule } from '@po-ui/ng-code-editor';
 import { HttpClientModule } from '@angular/common/http';
 import { PageDefaultModule } from './pages/configurar/page-default/page-default.module';
@@ -29,7 +28,6 @@ import { CommonModule } from '@angular/common';
     LoginModule,
     PoPageDynamicSearchModule,
   //  MenuModule,
-    RpsConfigModule,
     PoCodeEditorModule,
     HttpClientModule,
     PageDefaultModule

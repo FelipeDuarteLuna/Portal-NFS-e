@@ -4,7 +4,7 @@ import { PoMenuItem } from '@po-ui/ng-components';
 import { PageDefaultService } from './page-default.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IRps } from '../rps/rps';
+import { IRps } from './rps';
 import { PageDefault } from './PageDefault';
 import { ConversionUtils } from 'turbocommons-ts';
 import { Subscription } from 'rxjs/internal/Subscription';
