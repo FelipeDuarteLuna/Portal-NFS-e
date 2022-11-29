@@ -3,7 +3,7 @@ import { take, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { PoNotification, PoNotificationService, PoToasterOrientation } from '@po-ui/ng-components';
-import { IRps } from '../rps/rps';
+import { IRps } from './rps';
 import { PageDefault } from './PageDefault';
 
 
