@@ -10,7 +10,7 @@ import { PageDefaultComponent } from './page-default/page-default.component';
 const routes: Routes = [
   { path: '', component: ConfigurarComponent },
   //{ path: 'home', component: HomeComponent },
-  { path: 'rps', component: RpsComponent, canActivate:[AuthGuard] },
+  //{ path: 'rps', component: RpsComponent, canActivate:[AuthGuard] },
   { path: ':id', component: PageDefaultComponent, canActivate:[AuthGuard]},
 ];
 
