@@ -112,10 +112,10 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
   ToSave(event){
     console.log(event);
     console.log( this.xmlPrefeitura);
-    this.xmlApiPost.DESC_MUN = this.municipio;
+    this.xmlApiPost.DESC_MUN = btoa(this.municipio);
     this.xmlApiPost.UF = this.uf;
     this.xmlApiPost.COD_MUN = this.codMunicipio;
-    this.xmlApiPost.VERSAO = this.versao;
+    this.nav.Versao.indexOf("não homologado") != -1 ? this.xmlApiPost.VERSAO = "" : this.xmlApiPost.VERSAO = this.nav.Versao;
     this.xmlApiPost.ATIVO = "S";
     this.xmlApiPost.PROVEDOR = this.provedor;
     this.xmlApiPost.XML_TSS = btoa( this.xmlUnico );
@@ -127,7 +127,7 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
       }else if ( this.nomeMetodo.toUpperCase() == "MODELO" ) {
         this.xmlApiPost.MODELO =  this.xmlPrefeitura ;
 //versão
-      }else if ( this.nomeMetodo.toUpperCase() == "VERSAO" ) {
+      }else if ( this.nomeMetodo.toUpperCase() == "VERSÃO" ) {
         this.xmlApiPost.VERSAO =  this.xmlPrefeitura ;
       } else if ( this.nomeMetodo.toUpperCase() == "LOTE" ) {
         this.xmlApiPost.XML_LOTE = btoa( this.xmlPrefeitura );

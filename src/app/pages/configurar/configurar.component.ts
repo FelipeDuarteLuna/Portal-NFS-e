@@ -134,7 +134,7 @@ onClick_Detalhes(Event){
 
   carregaTela(jsonTSSNewNFse: MunGet){
     //aqui monto os dados que serão carregados no xml
-    this.xmlUnico3.DESC_MUN = jsonTSSNewNFse["DESC_MUN"];
+    this.xmlUnico3.DESC_MUN = atob(jsonTSSNewNFse["DESC_MUN"]);
     this.xmlUnico3.VERSAO = jsonTSSNewNFse["VERSAO"];
     this.xmlUnico3.UF = jsonTSSNewNFse["UF"];
     this.xmlUnico3.PROVEDOR = jsonTSSNewNFse["PROVEDOR"];
