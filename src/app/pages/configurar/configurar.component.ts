@@ -25,6 +25,9 @@ export class ConfigurarComponent implements OnInit{
 
   codMunicipio: any;
 
+  private blod: any;
+  private ArrayItemsExport: any= [];
+
   Detalhes: Array<PoTableAction> = [
     {label:"Detalhes", action: this.onClick_Detalhes.bind(this) }
   ];
@@ -90,6 +93,7 @@ onClick_Detalhes(Event){
     this.ConfigurarApi.GetPesquisa(this.Municipio).subscribe(
       success =>{
         if(typeof success.code == 'undefined'){
+          console.log(success)
           this.carregaTela(success)
         }else if(success.name == 'Not Found'){
           this.apiIbge(this.Municipio)
@@ -104,10 +108,6 @@ onClick_Detalhes(Event){
       }
     );
 
-  }
-
-  onClick_Export(){
-    alert('Exportar XML - PFD - DOC!!')
   }
 
   apiIbge(event){
@@ -202,10 +202,58 @@ onClick_Detalhes(Event){
       }else if(event.length == 7){
         this.onClick_Pesquisa(event);
       };
-
-
     }
 
+    onBack() {
+      this.router.navigate(['/home']);
+    }
 
+    public actions = [
+      { action: this.onBack.bind(this), icon: 'po-icon po-icon-home' },
+    ];
+
+      ClearScreen(){
+        alert("Button Clear Screen");
+        //Limpando os campos da Tela
+        this.Municipio = '';
+        this.xmlUnico3.DESC_MUN = '';
+        this.xmlUnico3.UF = '';
+        this.xmlUnico3.VERSAO = '';
+        for(let i = 0; i<= this.items.length; i++){
+          this.items[i].Conteudo = '';
+          this.items[i].Status = '2'
+        }
+      }
+
+  onClick_Export(){
+    alert('Exportar XML - PFD - DOC!!')
+    console.log("Typeof", typeof this.items);
+    console.log("Typeof", this.items);
+    const Kaic = this.items.map( newItens =>{
+        console.log( newItens.Modelo +": " + newItens.Conteudo);
+        this.ArrayItemsExport.push(  `"${newItens.Modelo}": ${newItens.Conteudo}\n`)
+    } );
+
+    const luna = JSON.stringify( this.ArrayItemsExport );
+    this.blod = new Blob( this.ArrayItemsExport , { type: "application/json"  });
+    console.log("Typeof", typeof this.blod);
+    console.log("Typeof",  this.blod);
+
+    console.log( luna);
+    const element = document.createElement('a');
+    element.href = window.URL.createObjectURL(this.blod);
+    element.download = `${this.Municipio}_${this.xmlUnico3.DESC_MUN}_${this.xmlUnico3.UF}\n`;
+    element.click();
+    console.log(element);
+
+
+    window.URL.revokeObjectURL( this.blod );
+    element.remove();
+    this.ArrayItemsExport.length = 0;
+    console.log("Array",  this.ArrayItemsExport);
+
+    //const text = new Response(this.blod).text();
+    //console.log("Response", text);
+  }
 
 }
