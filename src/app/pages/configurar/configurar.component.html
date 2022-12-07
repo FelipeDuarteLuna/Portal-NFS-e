@@ -7,8 +7,8 @@
     <br>
     <label>Informe o código do Município (IBGE) que deseja configurar:</label>
     <br><br>
-
-    <po-input p-icon="po-icon po-icon-search" class="comboPesquisa"
+  <div class="po-row">
+    <po-input p-icon="po-icon po-icon-search" class="comboPesquisa po-md-9"
     name="input"
     (p-change)="validaCampo($event)"
     [(ngModel)]="Municipio"
@@ -19,30 +19,39 @@
     p-mask="9999999"
     (keyup.enter)=validaCampo($event)
     >
-    </po-input>
+  </po-input>
 
-  <div class="divfooter" [hidden]="xmlUnico3.PROVEDOR">
+  <!--po-button class="po-md-3 po-mt-1"
+  (p-click)="ClearScreen()"
+  p-icon="po-icon-delete"
+  p-label=" Limpar"
+  >
+  </po-button-->
+  </div>
+
+  <div class="po-row po-mt-2">
+    <div class="divfooter" [hidden]="xmlUnico3.PROVEDOR">
       <h4 class="footer-text">Município: <b class="dados">{{ xmlUnico3.DESC_MUN }}</b></h4>
       <h4 class="footer-text">Estado:   <b class="dados">{{ xmlUnico3.UF }}</b></h4>
       <h4 class="footer-text">Produto:   <b class="dadosVersao">{{ xmlUnico3.VERSAO }}</b></h4>
-  </div>
-  <div class="divfooter" [hidden]="!xmlUnico3.PROVEDOR">
-    <h4 class="footer-text">Município: <b class="dados">{{ xmlUnico3.DESC_MUN }}</b></h4>
-    <h4 class="footer-text">Estado:   <b class="dados">{{ xmlUnico3.UF }}</b></h4>
-    <h4 class="footer-text">Versão:   <b class="dados">{{ xmlUnico3.VERSAO }}</b></h4>
+    </div>
+    <div class="divfooter" [hidden]="!xmlUnico3.PROVEDOR">
+      <h4 class="footer-text">Município: <b class="dados">{{ xmlUnico3.DESC_MUN }}</b></h4>
+      <h4 class="footer-text">Estado:   <b class="dados">{{ xmlUnico3.UF }}</b></h4>
+      <h4 class="footer-text">Versão:   <b class="dados">{{ xmlUnico3.VERSAO }}</b></h4>
+    </div>
   </div>
 
 
-  <figure>
+    <figure>
     <img src="../../../assets/imagens//nfse_nacional.png" alt="Logo NFS-e" width= 250px height=230px>
   </figure>
 
 </div>
 
   <div class="po-xl-8 po-lg-8 po-md-8 po-sm-8">
-
     <div>
-      <span class="po-icon po-icon-home" (click)="onClick_Home()"></span><br>
+      <span class="po-icon po-icon-home" (click)="onClick_Home()"></span>
       <po-table
       [(ngModel)]="xmlUnico3"
       [p-actions]="Detalhes"

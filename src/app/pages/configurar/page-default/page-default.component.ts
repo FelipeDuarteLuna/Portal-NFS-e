@@ -8,6 +8,7 @@ import { IRps } from './rps';
 import { PageDefault } from './PageDefault';
 import { ConversionUtils } from 'turbocommons-ts';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'pageDefault',
@@ -31,6 +32,8 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
   private sub: any;
   private sub2: any;
   private subscriptions: Subscription [] = [] ;
+  private fileXML: any;
+  private blod: any;
 
   id: string;
 
@@ -48,7 +51,8 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
       private PageService: PageDefaultService,
       private location: Location,
       private router: Router,
-      private route: ActivatedRoute // Classe para obter parâmetros, da rota ativa.
+      private route: ActivatedRoute, // Classe para obter parâmetros, da rota ativa.
+      private sanitizer: DomSanitizer
     ) {
 
     this.nav = this.router.getCurrentNavigation().extras.state;
@@ -179,14 +183,30 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
         { action: this.onBack.bind(this), icon: 'po-icon-news' },
       ];
 
+    ngOnDestroy() {
 
-  ngOnDestroy() {
+      this.subscriptions.forEach( ( subscription ) => {
 
-    this.subscriptions.forEach( ( subscription ) => {
+        console.log('ngOnDestroy DESTRIUI, completado com sucesso.', subscription)
+        subscription.unsubscribe()
+      });
+    }
 
-      console.log('ngOnDestroy DESTRIUI, completado com sucesso.', subscription)
-      subscription.unsubscribe()
-    });
+  onDownloadXML(){
+
+    alert("Download XML");
+    console.log("Typeof", typeof this.xmlPrefeitura);
+    this.blod = new Blob( [ this.xmlPrefeitura ], { type: 'application/xml'});
+    const element = document.createElement('a');
+    element.href = window.URL.createObjectURL(this.blod);
+    element.download = `${this.municipio}_${this.uf}_${this.nomeMetodo}`;
+    element.click();
+
+    window.URL.revokeObjectURL( this.blod );
+    element.remove();
+
+    const text = new Response(this.blod).text();
+    console.log("Response", text);
   }
 
 }
