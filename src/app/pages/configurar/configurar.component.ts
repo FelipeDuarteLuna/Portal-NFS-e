@@ -188,7 +188,7 @@ onClick_Detalhes(Event){
     (jsonTSSNewNFse["SIGN_CONSR"]==undefined ? this.items[13].Conteudo ='' : this.items[13].Conteudo = atob(jsonTSSNewNFse["SIGN_CONSR"]));
     (this.items[13].Conteudo=='' ? this.items[13].Status = '2' : this.items[13].Status = '1');
 
-    (jsonTSSNewNFse["XML_DEPARA"]==undefined ? this.items[14].Conteudo : this.items[14].Conteudo = atob(jsonTSSNewNFse["XML_DEPARA"]));
+    (jsonTSSNewNFse["XML_DEPARA"]==undefined ? this.items[14].Conteudo ='' : this.items[14].Conteudo = JSON.stringify(JSON.parse(atob(jsonTSSNewNFse["XML_DEPARA"])),null, 4));
     (this.items[14].Conteudo=='' ? this.items[14].Status = '2' : this.items[14].Status = '1');
 
     }
