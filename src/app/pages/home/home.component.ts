@@ -15,16 +15,17 @@ export class HomeComponent {
   constructor() {}
 
   ngOnInit(): void {
+
     this.menuItemSelected = 'Home'
   }
 
   printMenuAction(menu: PoMenuItem) {
+
     this.menuItemSelected = menu.label;
-    console.log(this);
-    console.log('Menu ativo.');
   }
 
   widgetClicadoDocumetacao(){
+
     window.open("https://tdn.totvs.com/pages/releaseview.action?pageId=203771195", '_blank');
   }
 

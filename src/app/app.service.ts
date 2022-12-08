@@ -22,19 +22,9 @@ export class MenuService implements PoMenuFilter {
   }
 
   isLogged() {
+
     console.log(sessionStorage);
     return !!(sessionStorage.getItem('User')); //Retorna se estão logado.
   }
 
 }
-
-/*export class AppService {
-
-  constructor() { }
-
-  isLogged() {
-    console.log(sessionStorage);
-    return !!(sessionStorage.getItem('User')); //Retorna se estão logado.
-  }
-
-}*/

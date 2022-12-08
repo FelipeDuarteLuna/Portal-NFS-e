@@ -8,7 +8,6 @@ import { IRps } from './rps';
 import { PageDefault } from './PageDefault';
 import { ConversionUtils } from 'turbocommons-ts';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'pageDefault',
@@ -32,7 +31,6 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
   private sub: any;
   private sub2: any;
   private subscriptions: Subscription [] = [] ;
-  private fileXML: any;
   private blod: any;
 
   id: string;
@@ -52,7 +50,6 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
       private location: Location,
       private router: Router,
       private route: ActivatedRoute, // Classe para obter parâmetros, da rota ativa.
-      private sanitizer: DomSanitizer
     ) {
 
     this.nav = this.router.getCurrentNavigation().extras.state;
@@ -94,9 +91,8 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
   }
 
   printMenuAction(menu: PoMenuItem) {
+
     this.menuItemSelected = menu.label;
-    console.log(this);
-    console.log('Menu ativo.');
   }
 
   restore() {
@@ -194,8 +190,6 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
 
   onDownloadXML(){
 
-    alert("Download XML");
-    console.log("Typeof", typeof this.xmlPrefeitura);
     this.blod = new Blob( [ this.xmlPrefeitura ], { type: 'application/xml'});
     const element = document.createElement('a');
     element.href = window.URL.createObjectURL(this.blod);
@@ -204,9 +198,6 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
 
     window.URL.revokeObjectURL( this.blod );
     element.remove();
-
-    const text = new Response(this.blod).text();
-    console.log("Response", text);
   }
 
 }

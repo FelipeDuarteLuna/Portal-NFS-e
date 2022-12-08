@@ -56,13 +56,13 @@ export class AppComponent implements OnInit {
   }
 
   widgetClicadoDocumetacao(){
+
     window.open("https://tdn.totvs.com/pages/releaseview.action?pageId=203771195", '_blank');
   }
 
   printMenuAction(menu: PoMenuItem) {
+
     this.menuItemSelected = menu.label;
-    console.log(this);
-    console.log('Menu ativo.');
   }
 
 }

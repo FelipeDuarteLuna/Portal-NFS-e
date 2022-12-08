@@ -8,8 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { PoCodeEditorModule } from '@po-ui/ng-code-editor';
 
 
-
-
 @NgModule({
   declarations: [ PageDefaultComponent ],
   imports: [
@@ -25,4 +23,5 @@ import { PoCodeEditorModule } from '@po-ui/ng-code-editor';
   providers: [],
   bootstrap: []
 })
+
 export class PageDefaultModule { }

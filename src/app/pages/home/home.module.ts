@@ -1,6 +1,5 @@
 import { HomeComponent } from './home.component';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { PoModule } from '@po-ui/ng-components';
 import { RouterModule } from '@angular/router';
@@ -11,7 +10,6 @@ import { HomeRoutingModule } from './home-routing.module';
   declarations: [ HomeComponent
    ],
   imports: [
-    // BrowserModule,
     PoModule,
     RouterModule,
     PoTemplatesModule,

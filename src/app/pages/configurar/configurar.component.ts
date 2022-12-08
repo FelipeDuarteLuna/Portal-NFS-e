@@ -27,6 +27,7 @@ export class ConfigurarComponent implements OnInit{
 
   private blod: any;
   private ArrayItemsExport: any= [];
+  private luna: any;
 
   Detalhes: Array<PoTableAction> = [
     {label:"Detalhes", action: this.onClick_Detalhes.bind(this) }
@@ -59,18 +60,14 @@ export class ConfigurarComponent implements OnInit{
       this.codMunicipio = sessionStorage.getItem("CodMunIBGE");
 
       if( this.codMunicipio !== null && this.codMunicipio !== undefined ){
-
-          console.log("ngOnInit", this.codMunicipio);
           this.Municipio = this.codMunicipio;
           this.onClick_Pesquisa();
-
       }
     }
 
     printMenuAction(menu: PoMenuItem) {
+
       this.menuItemSelected = menu.label;
-      console.log(this);
-      console.log('Menu ativo.');
     }
 
 //Tratamento botao home
@@ -80,8 +77,7 @@ export class ConfigurarComponent implements OnInit{
 
 //Chamado Detalhes Configurar
 onClick_Detalhes(Event){
-  console.log(' onClick_Detalhes, event: ', Event)
-  console.log(Event.Detalhes);
+
   this.router.navigate([Event.Detalhes],
     { state: { metodo: Event.Modelo, conteudoXml: Event.Conteudo, codMunicipio: this.Municipio, Municipio: this.xmlUnico3.DESC_MUN,
      UF: this.xmlUnico3.UF, Versao: this.xmlUnico3.VERSAO, Provedor: this.xmlUnico3.PROVEDOR } });
@@ -93,7 +89,7 @@ onClick_Detalhes(Event){
     this.ConfigurarApi.GetPesquisa(this.Municipio).subscribe(
       success =>{
         if(typeof success.code == 'undefined'){
-          console.log(success)
+          this.luna = success
           this.carregaTela(success)
         }else if(success.name == 'Not Found'){
           this.apiIbge(this.Municipio)
@@ -213,8 +209,8 @@ onClick_Detalhes(Event){
     ];
 
       ClearScreen(){
-        alert("Button Clear Screen");
         //Limpando os campos da Tela
+        //sessionStorage.removeItem( "CodMunIBGE" );
         this.Municipio = '';
         this.xmlUnico3.DESC_MUN = '';
         this.xmlUnico3.UF = '';
@@ -226,9 +222,7 @@ onClick_Detalhes(Event){
       }
 
   onClick_Export(){
-    alert('Exportar XML - PFD - DOC!!')
-    console.log("Typeof", typeof this.items);
-    console.log("Typeof", this.items);
+
     const Kaic = this.items.map( newItens =>{
         console.log( newItens.Modelo +": " + newItens.Conteudo);
         this.ArrayItemsExport.push(  `"${newItens.Modelo}": ${newItens.Conteudo}\n`)
@@ -236,24 +230,16 @@ onClick_Detalhes(Event){
 
     const luna = JSON.stringify( this.ArrayItemsExport );
     this.blod = new Blob( this.ArrayItemsExport , { type: "application/json"  });
-    console.log("Typeof", typeof this.blod);
-    console.log("Typeof",  this.blod);
+    //this.blod = new Blob( [JSON.stringify(this.luna, null, 2)] , { type: "application/json"  });
 
-    console.log( luna);
     const element = document.createElement('a');
     element.href = window.URL.createObjectURL(this.blod);
     element.download = `${this.Municipio}_${this.xmlUnico3.DESC_MUN}_${this.xmlUnico3.UF}\n`;
     element.click();
-    console.log(element);
-
 
     window.URL.revokeObjectURL( this.blod );
     element.remove();
     this.ArrayItemsExport.length = 0;
-    console.log("Array",  this.ArrayItemsExport);
-
-    //const text = new Response(this.blod).text();
-    //console.log("Response", text);
   }
 
 }
