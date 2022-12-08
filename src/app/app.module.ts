@@ -5,7 +5,6 @@ import { PoModule } from '@po-ui/ng-components';
 import { PoTemplatesModule, PoPageDynamicSearchModule } from '@po-ui/ng-templates';
 import { LoginModule } from './login/login.module';
 import { LoginComponent } from './login/login.component';
-//import { MenuModule } from './core/auth/menu/menu.module';
 import { AuthService } from './login/auth.service';
 import { AuthGuard } from './core/auth/auth.guard';
 import { NgModule } from '@angular/core';
@@ -27,7 +26,6 @@ import { CommonModule } from '@angular/common';
     PoTemplatesModule,
     LoginModule,
     PoPageDynamicSearchModule,
-  //  MenuModule,
     PoCodeEditorModule,
     HttpClientModule,
     PageDefaultModule

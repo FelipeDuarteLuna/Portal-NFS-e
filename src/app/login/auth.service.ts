@@ -15,17 +15,15 @@ export class AuthService {
   ) { }
 
   checkLogin(event){
-    console.log("nickDev2022");
-    console.log(event);
 
     if (event.login.toUpperCase() == "ADMIN" && event.password == "123456" ) {
-      console.log("nickDev2022");
+      console.log("Login realizado com sucesso. nickDeUv2022");
 
       this.mostraMenuEmitter.emit(true);
-
       sessionStorage.setItem('User', event.login.toUpperCase());
       sessionStorage.setItem('Password', event.password);
       this.router.navigate(['/home']);
+
     } else {
       this.mostraMenuEmitter.emit(false);
       this.PoNotificationService.error("Usuário incorreto, verifique as informações!");
