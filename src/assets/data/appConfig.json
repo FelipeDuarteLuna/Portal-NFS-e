@@ -1,0 +1,9 @@
+{
+  "name": "PortalTSS",
+  "version": "1.00",
+  "serverBackend": "/app-root",
+  "restEntryPoint": "",
+  "versionAPI": "",
+  "productLine": "Protheus",
+  "api_baseUrl": "/app-root"
+}

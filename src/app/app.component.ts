@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PoMenuItem } from '@po-ui/ng-components';
 import { AuthService } from './login/auth.service';
 import { AuthGuard } from './core/auth/auth.guard';
+import { ProAppConfigService } from '@totvs/protheus-lib-core';
 
 
 @Component({
@@ -45,7 +46,8 @@ export class AppComponent implements OnInit {
 
   constructor( private authService: AuthService,
     private authGuard: AuthGuard,
-    public MenuService: MenuService ) {
+    public MenuService: MenuService,
+    private protheusLibCore: ProAppConfigService ) {
 
   }
 
@@ -53,6 +55,8 @@ export class AppComponent implements OnInit {
     this.authGuard.mostraMenuEmit.subscribe(
       mostra => this.mostraMenu = mostra
     );
+
+    this.protheusLibCore.loadAppConfig();
   }
 
   widgetClicadoDocumetacao(){
