@@ -12,6 +12,8 @@ import { PoCodeEditorModule } from '@po-ui/ng-code-editor';
 import { HttpClientModule } from '@angular/common/http';
 import { PageDefaultModule } from './pages/configurar/page-default/page-default.module';
 import { CommonModule } from '@angular/common';
+import { ProtheusLibCoreModule } from '@totvs/protheus-lib-core';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { CommonModule } from '@angular/common';
     PoPageDynamicSearchModule,
     PoCodeEditorModule,
     HttpClientModule,
-    PageDefaultModule
+    PageDefaultModule,
+    ProtheusLibCoreModule
 
   ],
   providers: [AuthService, AuthGuard],

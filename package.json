@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration development",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -22,8 +22,10 @@
     "@po-ui/ng-components": "^14.6.0",
     "@po-ui/ng-templates": "^14.6.0",
     "@totvs/po-theme": "^14.7.0",
+    "@totvs/protheus-lib-core": "^14.1.3",
     "buffer": "^6.0.3",
     "rxjs": "~7.5.5",
+    "subsink": "^1.0.2",
     "tslib": "^2.3.0",
     "turbocommons-ts": "^3.8.0",
     "zone.js": "~0.11.4"
