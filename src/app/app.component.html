@@ -1,5 +1,6 @@
 <div class="po-wrapper" >
-  <po-toolbar p-title="TSS - NFS-e" [p-show-notification]="false" *ngIf="mostraMenu"></po-toolbar>
+  <po-toolbar p-title="TSS - NFS-e" [p-show-notification]="false"
+              p-actions-icon="po-icon-user" [p-profile]="profile" [p-profile-actions]="actions" *ngIf="mostraMenu"></po-toolbar>
 
   <po-menu
      *ngIf="mostraMenu"

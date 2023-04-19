@@ -1,6 +1,6 @@
 import { MenuService } from 'src/app/app.service';
 import { Component, OnInit } from '@angular/core';
-import { PoMenuItem } from '@po-ui/ng-components';
+import { PoMenuItem, PoToolbarAction, PoToolbarProfile, PoDialogModule, PoDialogConfirmLiterals, PoDialogService } from '@po-ui/ng-components';
 import { AuthService } from './login/auth.service';
 import { AuthGuard } from './core/auth/auth.guard';
 import { ProAppConfigService } from '@totvs/protheus-lib-core';
@@ -44,10 +44,20 @@ export class AppComponent implements OnInit {
     }
   ];
 
+  profile: PoToolbarProfile = {
+    title: 'Portal TSS'
+  };
+
+  actions: Array<PoToolbarAction> = [
+    {label:"Sair",icon: "po-icon po-icon-exit", type:"danger" , action: this.dialogAvatarToolbar.bind(this) }
+  ];
+
+
   constructor( private authService: AuthService,
     private authGuard: AuthGuard,
     public MenuService: MenuService,
-    private protheusLibCore: ProAppConfigService ) {
+    private protheusLibCore: ProAppConfigService,
+    public poDialog: PoDialogService ) {
 
   }
 
@@ -69,4 +79,19 @@ export class AppComponent implements OnInit {
     this.menuItemSelected = menu.label;
   }
 
+  dialogAvatarToolbar(){
+
+      this.poDialog.confirm({
+        literals: { cancel: 'Não', confirm: 'Sim' },
+        title: "Portal TSS",
+        message: "Deseja sair ?",
+        confirm: () => this.dialogConfirm()
+      });
+  }
+
+  dialogConfirm(){
+    console.log("Cliclou no botão Sim.");
+    window.open("https://tdn.totvs.com/pages/releaseview.action?pageId=203771195", '_blank');
+  }
 }
+
