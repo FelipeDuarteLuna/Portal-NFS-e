@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
   };
 
   actions: Array<PoToolbarAction> = [
-    {label:"Sair",icon: "po-icon po-icon-exit", type:"danger" , action: this.dialogAvatarToolbar.bind(this) }
+    {label:"Sair",icon: "po-icon po-icon-exit", type:"danger" , action: this.dialogConfirm.bind(this) }
   ];
 
 
@@ -57,7 +57,8 @@ export class AppComponent implements OnInit {
     private authGuard: AuthGuard,
     public MenuService: MenuService,
     private protheusLibCore: ProAppConfigService,
-    public poDialog: PoDialogService ) {
+    public poDialog: PoDialogService,
+    private protheusAppService: ProAppConfigService ) {
 
   }
 
@@ -90,8 +91,8 @@ export class AppComponent implements OnInit {
   }
 
   dialogConfirm(){
-    console.log("Cliclou no botão Sim.");
-    window.open("https://tdn.totvs.com/pages/releaseview.action?pageId=203771195", '_blank');
+
+    this.protheusAppService.callAppClose();1
   }
 }
 
