@@ -24,7 +24,7 @@ export class MenuService implements PoMenuFilter {
   isLogged() {
 
     console.log(sessionStorage);
-    return !!(sessionStorage.getItem('User')); //Retorna se estão logado.
+    return true; //return !!(sessionStorage.getItem('User')); //Retorna se estão logado.
   }
 
 }

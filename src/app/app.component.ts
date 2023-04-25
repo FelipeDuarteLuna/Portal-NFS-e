@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   title = 'Portal-Nfse';
   menuItemSelected: string;
 
-  mostraMenu: boolean = false;
+  mostraMenu: boolean = true;
 
   menus: Array<PoMenuItem> = [
     {

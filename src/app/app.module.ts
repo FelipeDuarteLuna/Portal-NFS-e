@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PageDefaultModule } from './pages/configurar/page-default/page-default.module';
 import { CommonModule } from '@angular/common';
 import { ProtheusLibCoreModule } from '@totvs/protheus-lib-core';
+import { HomeModule } from './pages/home/home.module';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ProtheusLibCoreModule } from '@totvs/protheus-lib-core';
     PoCodeEditorModule,
     HttpClientModule,
     PageDefaultModule,
-    ProtheusLibCoreModule
+    ProtheusLibCoreModule,
+    HomeModule
 
   ],
   providers: [AuthService, AuthGuard],
