@@ -230,11 +230,10 @@ onClick_Detalhes(Event){
 
     const luna = JSON.stringify( this.ArrayItemsExport );
     this.blod = new Blob( this.ArrayItemsExport , { type: "application/xml"  });
-    //this.blod = new Blob( [JSON.stringify(this.luna, null, 2)] , { type: "application/json"  });
 
     const element = document.createElement('a');
     element.href = window.URL.createObjectURL(this.blod);
-    element.download = `${this.Municipio}_${this.xmlUnico3.DESC_MUN}_${this.xmlUnico3.UF}\n`;
+    element.download = `${this.Municipio}_${this.xmlUnico3.DESC_MUN}_${this.xmlUnico3.UF}.xml`;
     element.click();
 
     window.URL.revokeObjectURL( this.blod );

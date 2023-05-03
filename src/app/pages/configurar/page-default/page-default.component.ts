@@ -193,7 +193,7 @@ export class PageDefaultComponent implements OnInit, OnDestroy {
     this.blod = new Blob( [ this.xmlPrefeitura ], { type: 'application/xml'});
     const element = document.createElement('a');
     element.href = window.URL.createObjectURL(this.blod);
-    element.download = `${this.municipio}_${this.uf}_${this.nomeMetodo}`;
+    element.download = `${this.municipio}_${this.uf}_${this.nomeMetodo}.xml`;
     element.click();
 
     window.URL.revokeObjectURL( this.blod );

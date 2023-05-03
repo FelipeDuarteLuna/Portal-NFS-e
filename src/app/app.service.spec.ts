@@ -1,16 +1,30 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AppService } from './app.service';
+import { MenuService } from './app.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('AppService', () => {
-  let service: AppService;
+
+
+describe('MenuService', () => {
+  let service: MenuService;
+
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(AppService);
+    TestBed.configureTestingModule({
+      imports:  [HttpClientTestingModule],
+      providers: [ MenuService ]
+    });
+    service = TestBed.inject(MenuService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('Testing isLogged() function ', () => {
+     const lReturn = service.isLogged();
+     console.log(lReturn);
+     expect( lReturn ).toBeTruthy();
+  });
+
 });
