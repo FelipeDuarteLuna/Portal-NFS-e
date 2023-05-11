@@ -51,7 +51,6 @@ describe( AuthService.name, () => {
     service.checkLogin(eventFalse);
 
     expect(PoNotificationSpy).toHaveBeenCalled();
-    //expect(sessionStorage.getItem("User")).toEqual("");
   });
 
 });
