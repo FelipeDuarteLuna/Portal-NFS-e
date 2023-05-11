@@ -92,7 +92,7 @@ export class AppComponent implements OnInit {
 
   dialogConfirm(){
 
-    this.protheusAppService.callAppClose();1
+    this.protheusAppService.callAppClose();
   }
 }
 
