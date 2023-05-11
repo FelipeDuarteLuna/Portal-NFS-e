@@ -3,6 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { ProtheusLibCoreModule } from '@totvs/protheus-lib-core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
+import { PoModule } from '@po-ui/ng-components';
+import { PoTemplatesModule } from '@po-ui/ng-templates';
+import { HomeRoutingModule } from './home-routing.module';
 
 describe(HomeComponent.name, () => {
 
@@ -13,7 +17,10 @@ describe(HomeComponent.name, () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
 
-      imports: [RouterTestingModule, ProtheusLibCoreModule],
+      imports: [RouterTestingModule, ProtheusLibCoreModule,     PoModule,
+        RouterModule,
+        PoTemplatesModule,
+        HomeRoutingModule],
       declarations: [ HomeComponent ]
     })
     .compileComponents();

@@ -4,6 +4,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from './auth.service';
+import { PoTemplatesModule } from '@po-ui/ng-templates';
+import { PoModule } from '@po-ui/ng-components';
 
 describe(LoginComponent.name, () => {
 
@@ -19,7 +21,7 @@ describe(LoginComponent.name, () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
 
-      imports: [ RouterTestingModule ],
+      imports: [ RouterTestingModule, PoModule, PoTemplatesModule ],
       providers: [ AuthService ],
       declarations: [ LoginComponent ]
     })
