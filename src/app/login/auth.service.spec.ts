@@ -4,10 +4,12 @@ import { AuthService } from './auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { from } from 'rxjs';
 import { AppRoutingModule } from '../app-routing.module';
+import { PoNotificationService } from '@po-ui/ng-components';
 
 describe( AuthService.name, () => {
 
   let service: AuthService;
+  let config: PoNotificationService;
   const eventTrue =
     {
       "login": "ADMIN",
@@ -27,6 +29,7 @@ describe( AuthService.name, () => {
     });
 
     service = TestBed.inject(AuthService);
+    config = TestBed.inject(PoNotificationService);
   });
 
   it('should be created', () => {
@@ -44,11 +47,11 @@ describe( AuthService.name, () => {
 
   it(`${ AuthService.prototype.checkLogin.name} - Validação do Login e Senha para entrar Else.`, () =>{
 
-    //const spy = spyOn(service, 'mostraMenuEmitter');
+    const PoNotificationSpy = spyOn(config, 'error');
     service.checkLogin(eventFalse);
 
-
-    expect(sessionStorage.getItem("User")).toEqual("ADMIN");
+    expect(PoNotificationSpy).toHaveBeenCalled();
+    //expect(sessionStorage.getItem("User")).toEqual("");
   });
 
 });
