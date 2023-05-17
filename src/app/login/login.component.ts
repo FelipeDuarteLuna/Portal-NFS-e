@@ -9,25 +9,21 @@ import { PoModalPasswordRecoveryType, PoPageLoginLiterals, PoPageLoginRecovery }
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-   private userLogin: string;
+   user: string;
    private userPass: string;
+   literals: PoPageLoginLiterals;
+   languages: Array<PoLanguage> = [
+    { language: 'pt', description: 'Português' }
+  ];
 
   constructor(
     private router: Router,
     private authservice : AuthService,
-  ) { }
-
-  ngOnInit() {
-  }
-
-  literals: PoPageLoginLiterals;
-
-
-  languages: Array<PoLanguage> = [
-    { language: 'pt', description: 'Português' }
-  ];
+  ) {
+      this.user='';
+   }
 
   customLiterals: PoPageLoginLiterals = {
     loginPlaceholder: 'Insira seu usuário de acesso',
@@ -45,7 +41,6 @@ export class LoginComponent implements OnInit {
     contactMail: 'support@mail.com'
   };
 
-  user: string = '' ;
 
   goToLogin(event){
     this.authservice.checkLogin(event);
