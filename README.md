@@ -2,14 +2,18 @@
 
 # :man_technologist::date::bar_chart:	Portal New NFS-e (Linha TSS)
 
-O **Portal New NFS-e (Linha TSS)** é uma plataforma Web para usuários do **TSS** que utilizem Transmissão de NFS-e via Web Service, para gerenciar seu Livro Fiscal com Emissões de NFS-e, controle fiscal e consolidação da receita da organização.
-
+O **Portal New NFS-e (Linha TSS)** é uma plataforma disponibilizada para usuários do **TSS** com intuito de auxilixar na Implementação, Controle e Manutenção no Layout do Documento Fiscal de Serviço(NFS-e) do Município que deseja Transmitir via Web Service.
+ 
 Através do portal o **usuário** irá conseguir implementar uma nova NFS-e do Município em questão para **Transmissão, Consulta e Cancelamento de NFS-e via Web Service**, ou caso necessário irá conseguir presta um auto atendimento. Por exemplo: Caso a prefeitura do Municipío altera a URL do ambiente de Produção ou Assinatura da NFS-e, sem a necessidade de acionar o Suporte TOTVS para adequação da NFS-e.
 
 
-## :star2: Ambientes
+## :star2: Acessando Portal New NFS-e
 
-* 🔗 [Homologação](https://tgv-homolog.web.app/#/login) - Ambiente de Homologação
+Para acessar o Portal New NFS-e o usuário deve acessar o **TSS Interface**, portal foi disponibilizado tanto para o Adminstrador quanto para os usuários cadastrados. Foi criado uma nova opção no menu com nome "Portal NEW NFS-e". Para o correto funcionamento do **Portal New NFS-e habilitar Porta Multiprotocolo e configurar Comunicação REST**.
+
+
+
+* 🔗 [Acessando Portal New NFS-e](https://tdn.totvs.com/pages/releaseview.action?pageId=775483319) - Acesse a Documentação Portal NFS-e: Guia de Refêrencia, sessão **Portal New NFS-e - Exemplo de Utilização**.
 
 
 ## :earth_americas: BackEnd
@@ -26,8 +30,9 @@ $/TSS/V12/Master/Fontes/NFSE/New Nfse/;
 
 1. Instalar [Node.js](https://nodejs.org/en/).
 2. Instalar [Angular CLI](https://www.npmjs.com/package/@angular/cli).
-3. Possuir uma base TSS atualizada com pacote de Expedição contíua.  [Portal de Vendas (Linha Protheus): Guia de Referencia - Requisitos](https://tdn.totvs.com/pages/releaseview.action?pageId=579468339#TOTVSGest%C3%A3odeVendas:GuiadeReferencia-REQUISITOS).
-5. Instalar projeto
+3. Instalar [Git Bash](https://git-scm.com/downloads)
+4. Possuir ambiente do TSS atualizada com pacote de Expedição contíua.  [Expedição Contínua do TSS](https://arte.engpro.totvs.com.br/engenharia/expedicao_continua/pacotes/latest/12.1.2210/tss/).
+5. Instalar as dependências do projeto a partir do arquivo **package.json**, execute o comando:
 
 ```javascript
 npm install
@@ -54,6 +59,23 @@ ng serve --open
 
 ## :white_check_mark: Testes (Front-End)
 
+## Execução de Testes end-to-end
+
+Para executar os testes end-to-end via [Jasmine](https://jasmine.github.io/), será necessário realizar o download dos pacotes de dependências do Jasmine\Karma :
+
+1. **Instalar o Jasmine**:
+
+ ```javascript
+  npm install jasmine --save-dev
+```
+
+2. **Instalar o Karma**:
+
+```javascript
+  npm install karma karma-coverage --save-dev
+```
+
+
 #### Execução com browse externo apresentado os resultados
 
 ```javascript
@@ -66,18 +88,13 @@ ng test --browsers=Chrome --code-coverage
 ng test --browsers=ChromeHeadless --code-coverage 
 ```
 
-## Execução de Testes end-to-end
-
-Para executar os testes end-to-end via [Jasmine](https://jasmine.github.io/), utilize:
-
-```javascript
-  npm install karma karma-coverage --save-dev
-```
 
 ## :memo: Documentação
 
-* 🔗 [Portal New NFS-e (Linha TSS): Guia de Referencia](https://tdn.totvs.com/pages/releaseview.action?pageId=579468339)
+* 🔗 [Portal New NFS-e (Linha TSS): Guia de Referencia](https://tdn.totvs.com/pages/viewpage.action?pageId=775483319)
+* 🔗 [Configuração e Implantação da New NFS-e Back-End](https://tdn.totvs.com/pages/viewpage.action?pageId=695194217)
+* 🔗 [REST ADVPL](https://tdn.totvs.com/display/public/framework/REST+ADVPL)
+* 🔗 [Entendendo as novidades do REST 2.0](https://tdn.totvs.com/display/public/framework/Entendendo+as+novidades+do+REST)
+* 🔗 [Application Server - Porta Multiprotocolo](https://tdn.totvs.com/display/tec/Application+Server+-+Porta+Multiprotocolo)
 * 🔗 [Perguntas mais frequentes do Portal New NFS-e](https://tdn.totvs.com/x/Ro2zJg)
-* 🔗 [Log de Alterações](https://code.engpro.totvs.com.br/totvs-gestao-de-vendas/totvs-gestao-de-vendas/src/branch/master/CHANGELOG.md)
-* 🔗 [O que há de novo ?](https://tdn.totvs.com/pages/releaseview.action?pageId=684340765)
-
+* 🔗 [Registro de Alterações - Changelog](https://code.engpro.totvs.com.br/totvs-tss/Portal-New-NFS-e/src/branch/main/CHANGELOG.md)
